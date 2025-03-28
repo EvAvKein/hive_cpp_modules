@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:14:47 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/26 17:16:00 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/03/28 12:33:55 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ std::string	*vaguely_phonenum(std::string *str)
 	{
 		if (i)
 		{
-			std::cerr << "Phone number may only have a plus as the first character" << std::endl;
+			std::cerr << CLR_REDBOLD "Phone number may only have a plus as the first character" CLR_RESET << std::endl;
 			return NULL;
 		}
 		if ((*str)[1] == '0')
 		{
-			std::cerr << "Phone number's first digit after plus can't be zero" << std::endl;
+			std::cerr << CLR_REDBOLD "Phone number's first digit after plus can't be zero" CLR_RESET << std::endl;
 			return NULL;
 		}
 	}
@@ -41,20 +41,21 @@ std::string	*vaguely_phonenum(std::string *str)
 	{
 		if (i >= max_digits)
 		{
-			std::cout << "Phone number cannot be longer than " << (int)max_digits << " digits" << std::endl;
+			std::cerr << CLR_REDBOLD "Phone number cannot be longer than " << (int)max_digits << " digits" CLR_RESET << std::endl;
 			return NULL;
 		}
 		if (!std::isdigit(num[i++]))
 		{
-			std::cout << "Phone number can only contain digits"
-				<< CLR_DIM << " (optionally with a leading '+' if including country code)"
-			<< CLR_RESET << std::endl;
+			std::cerr <<
+				CLR_REDBOLD "Phone number can only contain digits\n" CLR_RESET
+				CLR_DIM "(optionally with a leading '+' if including country code)" CLR_RESET
+			<< std::endl;
 			return NULL;
 		}
 	}
 	if (i < min_digits)
 	{
-		std::cout << "Phone number cannot be less than " << (int)min_digits << " digits" << std::endl;
+		std::cerr << CLR_REDBOLD "Phone number cannot be less than " << (int)min_digits << " digits" CLR_RESET << std::endl;
 		return NULL;
 	}
 	return (str);
@@ -64,7 +65,7 @@ std::string	*not_empty(std::string *str)
 {
 	if (str->length() == 0)
 	{
-		std::cout << "Field cannot be empty" << std::endl;
+		std::cerr << CLR_REDBOLD "Field cannot be empty" CLR_RESET << std::endl;
 		return NULL;
 	}
 	return str;
@@ -86,28 +87,25 @@ static bool	validate(std::string *input, str_parser* validation)
 	
 	while (validation[i])
 	{
-		if (validation[i++](input))
-			continue;
-		else			
+		if (!validation[i++](input))
 			return false;
 	}
 	return true;
 }
 
-std::string	receive_field(std::string prompt, str_parser* validation)
+std::string	receive_field(std::string &prompt, str_parser* validation)
 {
-	std::string	field = "";
+	std::string	field;
 
 	while (1)
 	{
-		std::cout << prompt << std::endl;
+		std::cout << CLR_BACKGROUND << prompt << CLR_RESET << std::endl;
 		std::getline(std::cin, field);
 		if (std::cin.eof())
 		{
-			// solve bug with typing text and ending with eof
-			clearerr(stdin);
-			std::cin.clear();
-			continue ;
+			if (field.size())
+				std::cout << std::endl;
+			return "";
 		}
 		if (validate(&field, validation))
 			break;
