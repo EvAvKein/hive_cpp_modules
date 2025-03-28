@@ -6,33 +6,43 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 08:48:03 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/26 09:58:22 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:27:33 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(): contacts(), oldest(0), filled(0)
+PhoneBook::PhoneBook() : contacts(), oldest(0), filled(0)
 {}
 
-void PhoneBook::add_contact()
+bool PhoneBook::add_contact()
 {
 	str_parser generic_str_vali[3] = {trim, not_empty, NULL};
 	str_parser phonenum_vali[4] = {trim, not_empty, vaguely_phonenum, NULL};
-	u_int8_t &i = filled == 8 ? oldest : filled;
+	
+	t_step steps[5] = {
+		{"First name?", generic_str_vali},
+		{"Last name?", generic_str_vali},
+		{"Nickname?", generic_str_vali},
+		{"Phone number?", phonenum_vali},
+		{"Darkest secret?", generic_str_vali}
+	};	
+	std::string buffer[5];
+	for (int i = 0; i < 5; i++)
+	{
+		buffer[i] = receive_field(steps[i].prompt, steps[i].validation_funcs);
+		if (buffer[i].empty())
+		{
+			std::cout << "Cancelling contact creation..." << std::endl;
+			return false;
+		}
+	}
+	u_int8_t *i = filled == 8 ? &oldest : &filled;
+	contacts[*i] = Contact(buffer[0], buffer[1], buffer[2], buffer[3], buffer[4]);
+	*i = *i + 1 % (8 + (i == &filled));
+	std::cout << CLR_GREENBOLD << "Contact " << ((int)(*i) - 1) << " created!" << CLR_RESET << std::endl;
 
-	// Created buffer because calling the funcs at constructor args executes them in reverse order
-	std::string buffer[5] = {
-		receive_field("First name?", generic_str_vali),
-		receive_field("Last name?", generic_str_vali),
-		receive_field("Nickname?", generic_str_vali),
-		receive_field("Phone number?", phonenum_vali),
-		receive_field("Darkest secret?", generic_str_vali)
-	};
-	contacts[i++] = Contact(
-		buffer[0], buffer[1], buffer[2], buffer[3], buffer[4]
-	);
-	std::cout << "Contact " << (int)(i - 1) << " created!" << std::endl;
+	return true;
 }
 
 static std::string trunc_for_column(std::string text)
@@ -42,14 +52,14 @@ static std::string trunc_for_column(std::string text)
 	return text;
 }
 
-void PhoneBook::search_contacts()
+void PhoneBook::print_contacts()
 {
 	std::cout << std::string(45, '-') << std::endl;
 	std::cout
-		<< "|" << std::setw(10) << "INDEX"
-		<< "|" << std::setw(10) << "FIRST NAME"
-		<< "|" << std::setw(10) << "LAST NAME"
-		<< "|" << std::setw(10) << "NICKNAME"
+		<< "|" << std::setw(10) << CLR_YLLWBGBOLD "     INDEX" CLR_RESET
+		<< "|" << std::setw(10) << CLR_YLLWBGBOLD "FIRST NAME" CLR_RESET
+		<< "|" << std::setw(10) << CLR_YLLWBGBOLD " LAST NAME" CLR_RESET
+		<< "|" << std::setw(10) << CLR_YLLWBGBOLD "  NICKNAME" CLR_RESET
 	<< "|" << std::endl;
 	std::cout << std::string(45, '-') << std::endl;	
 	
@@ -75,4 +85,15 @@ void PhoneBook::search_contacts()
 	}
 
 	std::cout << std::string(45, '-') << std::endl;
+}
+
+void PhoneBook::search_contacts()
+{
+	print_contacts();
+
+	// std::string index_input = receive_field("Typ to display", (str_parser[2]){not_empty, NULL});
+	// if (index_input.empty())
+	// {
+		
+	// }
 }
