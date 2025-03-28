@@ -6,28 +6,34 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/03/25 19:58:17 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/03/28 10:01:22 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := PhoneBook
 
-SRC_FILES := Contact.cpp \
-			 field_processing.cpp \
-			 PhoneBook.cpp \
-			 main.cpp
+SRC := Contact.cpp \
+	   field_processing.cpp \
+	   PhoneBook.cpp \
+	   main.cpp
+HEADERS := Contact.hpp \
+		   field_processing.hpp \
+		   PhoneBook.hpp \
+		   colors.hpp
 
 CC := c++
 COMPILE_FLAGS := -Wall -Wextra -Werror -std=c++11
+DEBUG_FLAGS := -g
 
-OBJ := $(SRC_FILES:%.cpp=%.o)
+OBJ := $(SRC:%.cpp=%.o)
 
+# STANDARD #
 all: $(NAME)
 
-%.o: %.c
-	${CC} $(COMPILE_FLAGS) -c $< -o $@
+%.o: %.cpp
+	${CC} $(COMPILE_FLAGS) -D COLOR=$(if $(COLOR),1,0) -c $< -o $@
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEADERS)
 	${CC} $(COMPILE_FLAGS) $(OBJ) -o $(NAME)
 
 clean:
@@ -38,4 +44,15 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# EXTRAS #
+neat: $(NAME) clean
+	clear
+
+color: export COLOR = 1
+color: re
+
+debug: COMPILE_FLAGS += $(DEBUG_FLAGS)
+debug: re
+
+# PHONY #
+.PHONY: all clean fclean re neat color debug
