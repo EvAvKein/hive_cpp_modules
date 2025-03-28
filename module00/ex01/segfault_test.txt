@@ -26,6 +26,8 @@ joe
 0123456789
 hates pizza
 
+SEARCH
+
 ADD
 johnathan
 jackson
@@ -83,6 +85,8 @@ replson
 rep
 0123456789
 loves pizza
+
+SEARCH
 
 ADD
 replaced
