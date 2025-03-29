@@ -39,7 +39,7 @@ bool PhoneBook::add_contact()
 	}
 	u_int8_t *i = filled == 8 ? &oldest : &filled;
 	contacts[*i] = Contact(buffer[0], buffer[1], buffer[2], buffer[3], buffer[4]);
-	std::cout << CLR_GREENBOLD << "Contact " << (int)((*i)++) << " created!" << CLR_RESET << std::endl;
+	std::cout << CLR_GREENBOLD "Contact " << (int)((*i)++) << " created!" CLR_RESET << std::endl;
 	if (i == &oldest)
 		*i %= 8;
 	return true;
@@ -55,12 +55,13 @@ static std::string trunc_for_column(std::string text)
 void PhoneBook::print_contacts()
 {
 	std::cout << std::string(45, '-') << std::endl;
-	std::cout
-		<< "|" << std::setw(10) << CLR_YLLWBGBOLD "     INDEX" CLR_RESET
-		<< "|" << std::setw(10) << CLR_YLLWBGBOLD "FIRST NAME" CLR_RESET
-		<< "|" << std::setw(10) << CLR_YLLWBGBOLD " LAST NAME" CLR_RESET
-		<< "|" << std::setw(10) << CLR_YLLWBGBOLD "  NICKNAME" CLR_RESET
-	<< "|" << std::endl;
+	std::cout <<
+		"|" << std::setw(10) << CLR_YLLWBGBOLD "     INDEX" CLR_RESET
+		"|" << std::setw(10) << CLR_YLLWBGBOLD "FIRST NAME" CLR_RESET
+		"|" << std::setw(10) << CLR_YLLWBGBOLD " LAST NAME" CLR_RESET
+		"|" << std::setw(10) << CLR_YLLWBGBOLD "  NICKNAME" CLR_RESET
+		"|"
+	<< std::endl;
 	std::cout << std::string(45, '-') << std::endl;	
 	
 	u_int8_t i = 0;
@@ -68,20 +69,21 @@ void PhoneBook::print_contacts()
 	{
 		while (i < filled)
 		{
-			std::cout
-				<< "|" << std::setw(10) << (int)i
-				<< "|" << std::setw(10) << trunc_for_column(contacts[i].get_first_name())
-				<< "|" << std::setw(10) << trunc_for_column(contacts[i].get_last_name())
-				<< "|" << std::setw(10) << trunc_for_column(contacts[i].get_nickname())
-			<< "|" << std::endl;
+			std::cout <<
+				"|" << std::setw(10) << (int)i <<
+				"|" << std::setw(10) << trunc_for_column(contacts[i].get_first_name()) <<
+				"|" << std::setw(10) << trunc_for_column(contacts[i].get_last_name()) <<
+				"|" << std::setw(10) << trunc_for_column(contacts[i].get_nickname()) <<
+				"|"
+			<< std::endl;
 			i++;
 		}
 	}
 	else
 	{
-		std::cout
-			<< "|" << std::setw(43) << " NO CONTACT ADDED, USE THE \"ADD\" COMMAND! "
-		<< "|" << std::endl;
+		std::cout <<
+			"|  NO CONTACT ADDED, USE THE \"ADD\" COMMAND! |"
+		<< std::endl;
 	}
 
 	std::cout << std::string(45, '-') << std::endl;
@@ -130,7 +132,7 @@ void PhoneBook::search_contacts()
 		std::cout << std::string(45, '-') << std::endl;
 		return ;	
 	}	
-	std::cerr <<
+	std::cout <<
 		CLR_DIMBOLD "Quitting index query, rerun " CLR_RESET
 		CLR_GREENBOLD "SEARCH" CLR_RESET
 		CLR_DIMBOLD " to try again" CLR_RESET
