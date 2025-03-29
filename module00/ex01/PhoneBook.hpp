@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:38:43 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/28 12:40:28 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/03/29 18:24:20 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class PhoneBook
 		u_int8_t	oldest;
 		u_int8_t	filled;
 		void		print_contacts();
+		void		print_contact_info(u_int8_t index);
 
 	public:
 		PhoneBook();

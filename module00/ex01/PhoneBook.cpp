@@ -87,13 +87,54 @@ void PhoneBook::print_contacts()
 	std::cout << std::string(45, '-') << std::endl;
 }
 
+void PhoneBook::print_contact_info(u_int8_t index)
+{
+	Contact contact = contacts[index];
+
+	std::cout << CLR_BACKGROUND "Index" CLR_RESET << std::endl;
+	std::cout << static_cast<int>(index) << std::endl;
+	
+	std::cout << CLR_BACKGROUND "First name" CLR_RESET << std::endl;
+	std::cout << contact.get_first_name() << std::endl;
+	
+	std::cout << CLR_BACKGROUND "Last name" CLR_RESET << std::endl;
+	std::cout << contact.get_last_name() << std::endl;
+	
+	std::cout << CLR_BACKGROUND "Nickname" CLR_RESET << std::endl;
+	std::cout << contact.get_nickname() << std::endl;
+	
+	std::cout << CLR_BACKGROUND "Phone number" CLR_RESET << std::endl;
+	std::cout << contact.get_phone_number() << std::endl;
+	
+	std::cout << CLR_BACKGROUND "Darkest secret" CLR_RESET << std::endl;
+	std::cout << contact.get_darkest_secret() << std::endl;
+}
+
 void PhoneBook::search_contacts()
 {
 	print_contacts();
 
-	// std::string index_input = receive_field("Typ to display", (str_parser[2]){not_empty, NULL});
-	// if (index_input.empty())
-	// {
-		
-	// }
+	while (1)
+	{
+		std::string prompt = "Input a contact index to query info";
+		std::string index_input = receive_field(prompt, (str_parser[3]){trim, NULL});
+		if (index_input.length() != 1 || index_input[0] > '9' || index_input[0] < '0')
+		{
+			std::cerr << CLR_REDBOLD "Index can only be a single digit" CLR_RESET << std::endl;
+			break;
+		}
+		u_int8_t index = index_input[0] - '0';
+		if (index + 1 > filled)
+		{
+			std::cerr << CLR_REDBOLD "A contact with this index doesn't exist" CLR_RESET << std::endl;
+			break;
+		}
+		print_contact_info(index);
+		return ;	
+	}	
+	std::cerr <<
+		CLR_DIMBOLD "Quitting index query, rerun " CLR_RESET
+		CLR_GREENBOLD "SEARCH" CLR_RESET
+		CLR_DIMBOLD " to retry" CLR_RESET
+	<< std::endl;
 }
