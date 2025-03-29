@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:36:30 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/28 12:27:11 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/03/29 19:11:41 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 		{
 			if (!phonebook.add_contact())
 			{
-			 	std::cout << "Exiting phonebook!" << std::endl;
+			 	std::cout << CLR_GREENBOLD "Exiting phonebook!" CLR_RESET << std::endl;
 				return EXIT_SUCCESS;
 			}
 		}
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 		}
 		else if (input == "EXIT")
 		{
-			std::cout << "Exiting phonebook!" << std::endl;
+			std::cout << CLR_GREENBOLD "Exiting phonebook!" CLR_RESET << std::endl;
 			return EXIT_SUCCESS;
 		}
 		else
