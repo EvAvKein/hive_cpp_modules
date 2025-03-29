@@ -28,6 +28,8 @@ bool PhoneBook::add_contact()
 		{"Darkest secret?", generic_str_vali}
 	};	
 	std::string buffer[5];
+	if (filled == 8)
+		std::cout << CLR_DIMBOLD "Replacing contact at index " << static_cast<int>(oldest) << CLR_RESET << std::endl;
 	for (int i = 0; i < 5; i++)
 	{
 		buffer[i] = receive_field(steps[i].prompt, steps[i].validation_funcs);
