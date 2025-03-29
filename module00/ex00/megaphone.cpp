@@ -6,12 +6,11 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:36:30 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/23 13:29:20 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/03/29 19:31:12 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype> // already included in iostream, but isn't included on older systems/compilers
 
 int main(int argc, char **argv)
 {
