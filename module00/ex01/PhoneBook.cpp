@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 08:48:03 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/28 18:27:33 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:50:51y ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ bool PhoneBook::add_contact()
 	}
 	u_int8_t *i = filled == 8 ? &oldest : &filled;
 	contacts[*i] = Contact(buffer[0], buffer[1], buffer[2], buffer[3], buffer[4]);
-	*i = *i + 1 % (8 + (i == &filled));
-	std::cout << CLR_GREENBOLD << "Contact " << ((int)(*i) - 1) << " created!" << CLR_RESET << std::endl;
-
+	std::cout << CLR_GREENBOLD << "Contact " << (int)((*i)++) << " created!" << CLR_RESET << std::endl;
+	if (i == &oldest)
+		*i %= 8;
 	return true;
 }
 
