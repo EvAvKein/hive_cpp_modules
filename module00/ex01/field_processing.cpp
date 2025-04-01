@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:14:47 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/28 12:33:55 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 17:03:11 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ std::string	*vaguely_phonenum(std::string *str)
 		if (i)
 		{
 			std::cerr << CLR_REDBOLD "Phone number may only have a plus as the first character" CLR_RESET << std::endl;
-			return NULL;
+			return nullptr;
 		}
 		if ((*str)[1] == '0')
 		{
 			std::cerr << CLR_REDBOLD "Phone number's first digit after plus can't be zero" CLR_RESET << std::endl;
-			return NULL;
+			return nullptr;
 		}
 	}
 
@@ -42,7 +42,7 @@ std::string	*vaguely_phonenum(std::string *str)
 		if (i >= max_digits)
 		{
 			std::cerr << CLR_REDBOLD "Phone number cannot be longer than " << (int)max_digits << " digits" CLR_RESET << std::endl;
-			return NULL;
+			return nullptr;
 		}
 		if (!std::isdigit(num[i++]))
 		{
@@ -50,13 +50,13 @@ std::string	*vaguely_phonenum(std::string *str)
 				CLR_REDBOLD "Phone number can only contain digits\n" CLR_RESET
 				CLR_DIM "(optionally with a leading '+' if including country code)" CLR_RESET
 			<< std::endl;
-			return NULL;
+			return nullptr;
 		}
 	}
 	if (i < min_digits)
 	{
 		std::cerr << CLR_REDBOLD "Phone number cannot be less than " << (int)min_digits << " digits" CLR_RESET << std::endl;
-		return NULL;
+		return nullptr;
 	}
 	return (str);
 }
@@ -66,7 +66,7 @@ std::string	*not_empty(std::string *str)
 	if (str->length() == 0)
 	{
 		std::cerr << CLR_REDBOLD "Field cannot be empty" CLR_RESET << std::endl;
-		return NULL;
+		return nullptr;
 	}
 	return str;
 }

@@ -17,8 +17,8 @@ PhoneBook::PhoneBook() : contacts(), oldest(0), filled(0)
 
 bool PhoneBook::add_contact()
 {
-	str_parser generic_str_vali[3] = {trim, not_empty, NULL};
-	str_parser phonenum_vali[4] = {trim, not_empty, vaguely_phonenum, NULL};
+	str_parser generic_str_vali[3] = {trim, not_empty, nullptr};
+	str_parser phonenum_vali[4] = {trim, not_empty, vaguely_phonenum, nullptr};
 	
 	t_step steps[5] = {
 		{"First name?", generic_str_vali},
@@ -118,7 +118,7 @@ void PhoneBook::search_contacts()
 	while (1)
 	{
 		std::string prompt = "Input a contact index to display info";
-		std::string index_input = receive_field(prompt, (str_parser[2]){trim, NULL});
+		std::string index_input = receive_field(prompt, (str_parser[2]){trim, nullptr});
 		if (index_input.length() != 1 || index_input[0] > '9' || index_input[0] < '0')
 		{
 			std::cerr << CLR_REDBOLD "Index can only be a single digit" CLR_RESET << std::endl;
