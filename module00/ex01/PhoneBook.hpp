@@ -6,10 +6,11 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:38:43 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/29 18:24:20 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 12:00:03 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 

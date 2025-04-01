@@ -6,12 +6,13 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 09:55:41 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/28 13:40:14 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 11:59:48 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIELD_PARSING_HPP
-# define FIELD_PARSING_HPP
+#pragma once
+#ifndef FIELD_PROCESSING_HPP
+# define FIELD_PROCESSING_HPP
 
 # include <iostream>
 # include "colors.hpp"

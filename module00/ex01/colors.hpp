@@ -6,12 +6,13 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:31:29 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/28 18:03:46 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 11:59:56 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_HPP
-# define COLOR_HPP
+#pragma once
+#ifndef COLORS_HPP
+# define COLORS_HPP
 
 # if COLOR
 #  define CLR_RESET			"\e[0m"
