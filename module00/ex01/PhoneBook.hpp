@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:38:43 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 12:00:03 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 12:09:04 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ typedef struct s_step
 
 class PhoneBook
 {
+	public:
+		PhoneBook();
+		bool	add_contact();
+		void	search_contacts();
+	
 	private:
 		Contact		contacts[8];
 		u_int8_t	oldest;
 		u_int8_t	filled;
 		void		print_contacts();
 		void		print_contact_info(u_int8_t index);
-
-	public:
-		PhoneBook();
-		bool	add_contact();
-		void	search_contacts();
 };
 
 #endif
