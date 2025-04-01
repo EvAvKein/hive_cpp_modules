@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:01:51 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 12:03:31 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 12:06:52 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Zombie
 		void announce(void);
 
 	private:
-		std::string _name;
+		std::string name;
 };
 
 Zombie* zombieHorde(int N, std::string name);
