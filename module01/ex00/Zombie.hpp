@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:01:51 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 11:57:40 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 12:03:38 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
-#include <iostream>
+# include <iostream>
 
 class Zombie
 {
