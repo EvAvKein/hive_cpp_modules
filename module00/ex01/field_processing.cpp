@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:14:47 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 17:03:11 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 21:35:50 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ std::string	receive_field(std::string &prompt, str_parser* validation)
 
 	while (1)
 	{
-		std::cout << CLR_BACKGROUND << prompt << CLR_RESET << std::endl;
+		std::cout << CLR_YLLWBOLD << prompt << CLR_RESET << std::endl;
 		std::getline(std::cin, field);
 		if (std::cin.eof())
 		{

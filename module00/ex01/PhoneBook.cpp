@@ -58,10 +58,10 @@ void PhoneBook::print_contacts()
 {
 	std::cout << std::string(45, '-') << std::endl;
 	std::cout <<
-		"|" << std::setw(10) << CLR_YLLWBGBOLD "     INDEX" CLR_RESET
-		"|" << std::setw(10) << CLR_YLLWBGBOLD "FIRST NAME" CLR_RESET
-		"|" << std::setw(10) << CLR_YLLWBGBOLD " LAST NAME" CLR_RESET
-		"|" << std::setw(10) << CLR_YLLWBGBOLD "  NICKNAME" CLR_RESET
+		"|" << std::setw(10) << CLR_CYNBGBOLD "     INDEX" CLR_RESET
+		"|" << std::setw(10) << CLR_CYNBGBOLD "FIRST NAME" CLR_RESET
+		"|" << std::setw(10) << CLR_CYNBGBOLD " LAST NAME" CLR_RESET
+		"|" << std::setw(10) << CLR_CYNBGBOLD "  NICKNAME" CLR_RESET
 		"|"
 	<< std::endl;
 	std::cout << std::string(45, '-') << std::endl;	
@@ -72,10 +72,10 @@ void PhoneBook::print_contacts()
 		while (i < filled)
 		{
 			std::cout <<
-				"|" << std::setw(10) << (int)i <<
-				"|" << std::setw(10) << trunc_for_column(contacts[i].get_first_name()) <<
-				"|" << std::setw(10) << trunc_for_column(contacts[i].get_last_name()) <<
-				"|" << std::setw(10) << trunc_for_column(contacts[i].get_nickname()) <<
+				"|" << CLR_CYNBOLD << std::setw(10) << (int)i << CLR_RESET <<
+				"|" << CLR_CYNBOLD << std::setw(10) << trunc_for_column(contacts[i].get_first_name()) << CLR_RESET <<
+				"|" << CLR_CYNBOLD << std::setw(10) << trunc_for_column(contacts[i].get_last_name()) << CLR_RESET <<
+				"|" << CLR_CYNBOLD << std::setw(10) << trunc_for_column(contacts[i].get_nickname()) << CLR_RESET <<
 				"|"
 			<< std::endl;
 			i++;
@@ -95,19 +95,19 @@ void PhoneBook::print_contact_info(u_int8_t index)
 {
 	Contact contact = contacts[index];
 
-	std::cout << CLR_BACKGROUND "First name" CLR_RESET << std::endl;
+	std::cout << CLR_YLLWBOLD "First name" CLR_RESET << std::endl;
 	std::cout << contact.get_first_name() << std::endl;
 	
-	std::cout << CLR_BACKGROUND "Last name" CLR_RESET << std::endl;
+	std::cout << CLR_YLLWBOLD "Last name" CLR_RESET << std::endl;
 	std::cout << contact.get_last_name() << std::endl;
 	
-	std::cout << CLR_BACKGROUND "Nickname" CLR_RESET << std::endl;
+	std::cout << CLR_YLLWBOLD "Nickname" CLR_RESET << std::endl;
 	std::cout << contact.get_nickname() << std::endl;
 	
-	std::cout << CLR_BACKGROUND "Phone number" CLR_RESET << std::endl;
+	std::cout << CLR_YLLWBOLD "Phone number" CLR_RESET << std::endl;
 	std::cout << contact.get_phone_number() << std::endl;
 	
-	std::cout << CLR_BACKGROUND "Darkest secret" CLR_RESET << std::endl;
+	std::cout << CLR_YLLWBOLD "Darkest secret" CLR_RESET << std::endl;
 	std::cout << contact.get_darkest_secret() << std::endl;
 }
 
