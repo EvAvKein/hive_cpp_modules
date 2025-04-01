@@ -6,9 +6,13 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:01:51 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 10:10:24 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/01 11:57:20 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <iostream>
 
@@ -25,3 +29,5 @@ class Zombie
 };
 
 Zombie* zombieHorde(int N, std::string name);
+
+#endif
