@@ -61,23 +61,28 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 	
-	std::string		input;
+	std::string		line;
 	size_t			match_i;
-	while (getline(data.infile, input, '\0'))
+	
+	while (getline(data.infile, line, '\n'))
 	{
-		match_i = input.find(data.s1, 0);
+		match_i = line.find(data.s1, 0);
 
 		if (match_i == std::string::npos)
-			data.outfile << input;
+			data.outfile << line;
 		else
 		{
 			while (match_i != std::string::npos)
 			{
-				data.outfile << input.substr(0, match_i).append(data.s2);
-				input.erase(0, match_i + data.s1_len);
-				match_i = input.find(data.s1, 0);
+				data.outfile << line.substr(0, match_i).append(data.s2);
+				line.erase(0, match_i + data.s1_len);
+				match_i = line.find(data.s1, 0);
 			}
+			data.outfile << line;
 		}
+
+		if (!data.infile.eof())
+			data.outfile << std::endl;
 	}
 	
 	data.infile.close();
