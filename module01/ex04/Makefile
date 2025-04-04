@@ -6,16 +6,13 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/04/02 08:35:09 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/04/04 13:26:33 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := SIFL
 
 SRC := main.cpp
-HEADERS := Weapon.hpp \
-		   HumanA.hpp \
-		   HumanB.hpp
 
 CC := c++
 COMPILE_FLAGS := -Wall -Wextra -Werror -std=c++11
@@ -27,9 +24,9 @@ OBJ := $(SRC:%.cpp=%.o)
 all: $(NAME)
 
 %.o: %.cpp
-	${CC} $(COMPILE_FLAGS) -D COLOR=$(if $(COLOR),1,0) -c $< -o $@
+	${CC} $(COMPILE_FLAGS) -c $< -o $@
 
-$(NAME): $(OBJ) #$(HEADERS)
+$(NAME): $(OBJ)
 	${CC} $(COMPILE_FLAGS) $(OBJ) -o $(NAME)
 
 clean:
@@ -44,11 +41,8 @@ re: fclean all
 neat: $(NAME) clean
 	clear
 
-color: export COLOR = 1
-color: re
-
 debug: COMPILE_FLAGS += $(DEBUG_FLAGS)
 debug: re
 
 # PHONY #
-.PHONY: all clean fclean re neat color debug
+.PHONY: all clean fclean re neat debug
