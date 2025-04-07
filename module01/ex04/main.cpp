@@ -12,13 +12,14 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 typedef	struct		s_data
 {
 	std::ifstream	infile;
 	std::string		s1;
-	std::string		s2;
 	size_t			s1_len;
+	std::string		s2;
 	std::ofstream	outfile;
 }					t_data;
 
@@ -47,23 +48,14 @@ static inline void prep_and_validation(int &argc, char **argv, t_data &data)
 		throw std::move(error);
 	}
 }
-int main(int argc, char** argv)
-{
-	t_data	data;
 
-	try
-	{
-		prep_and_validation(argc, argv, data);
-	}
-	catch (std::string& error)
-	{
-		std::cerr << error << std::endl;
-		return EXIT_FAILURE;
-	}
-	
-	std::string		line;
-	size_t			match_i;
-	
+static inline void read_to_outfile_with_replacements(t_data& data, std::string& line, size_t& match_i)
+{
+	// FIX ISSUE WITH REPLACING NEWLINE
+
+	// std::stringstream file;
+	// file << data.infile.rdbuf();
+
 	while (getline(data.infile, line, '\n'))
 	{
 		match_i = line.find(data.s1, 0);
@@ -84,9 +76,36 @@ int main(int argc, char** argv)
 		if (!data.infile.eof())
 			data.outfile << std::endl;
 	}
+}
+
+int main(int argc, char** argv)
+{
+	t_data	data;
+
+	try
+	{
+		prep_and_validation(argc, argv, data);
+	}
+	catch (const std::string& error)
+	{
+		std::cerr << error << std::endl;
+		return EXIT_FAILURE;
+	}
 	
-	data.infile.close();
-	data.outfile.close();
+	try
+	{
+		std::string		line;
+		size_t			match_i;
+		read_to_outfile_with_replacements(data, line, match_i);
+		
+		data.infile.close();
+		data.outfile.close();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return EXIT_FAILURE;
+	}
 
 	return EXIT_SUCCESS;
 }
