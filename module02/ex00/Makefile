@@ -6,19 +6,15 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/04/07 15:29:48 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/04/07 10:36:14 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := humans
+NAME := harlFilter
 
 SRC := main.cpp \
-	   Weapon.cpp \
-	   HumanA.cpp \
-	   HumanB.cpp
-HEADERS := Weapon.hpp \
-		   HumanA.hpp \
-		   HumanB.hpp
+	   Harl.cpp
+HEADERS := Harl.hpp
 
 CC := c++
 COMPILE_FLAGS := -Wall -Wextra -Werror -std=c++11
@@ -30,7 +26,7 @@ OBJ := $(SRC:%.cpp=%.o)
 all: $(NAME)
 
 %.o: %.cpp
-	${CC} $(COMPILE_FLAGS) -c $< -o $@
+	${CC} $(COMPILE_FLAGS) -D COLOR=$(if $(COLOR),1,0) -c $< -o $@
 
 $(NAME): $(OBJ) $(HEADERS)
 	${CC} $(COMPILE_FLAGS) $(OBJ) -o $(NAME)
@@ -47,8 +43,11 @@ re: fclean all
 neat: $(NAME) clean
 	clear
 
+color: export COLOR = 1
+color: re
+
 debug: COMPILE_FLAGS += $(DEBUG_FLAGS)
 debug: re
 
 # PHONY #
-.PHONY: all clean fclean re neat debug
+.PHONY: all clean fclean re neat color debug

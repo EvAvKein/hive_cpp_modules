@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:18:58 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 10:21:43 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:49:41 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int main()
 	try {
 		horde = zombieHorde(N, "Horder");
 	} catch (...) {
-		std::cerr << "Cancelling test after failed zombieHorde allocation..." << std::endl;
+		std::cerr << CLR_REDBOLD
+			"Cancelling test after failed zombieHorde allocation..."
+		CLR_RESET << std::endl;
 		return EXIT_FAILURE;
 	}
 	

@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:41:11 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/07 10:59:22 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:56:42 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ int main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		std::cerr << "Harl needs something to complain about! ^^'" << std::endl;
+		std::cerr << CLR_BOLD
+			"Harl needs something to complain about! ^^'"
+		CLR_RESET << std::endl;
 		return EXIT_FAILURE;
 	}
 	
 	if (argc > 2)
 	{
-		std::cerr << "Harl is overwhelmed, one complaint level at a time please? :$" << std::endl;
+		std::cerr << CLR_BOLD
+			"Harl is overwhelmed, one thing at a time please? :$"
+		CLR_RESET << std::endl;
 		return EXIT_FAILURE;
 	}
 

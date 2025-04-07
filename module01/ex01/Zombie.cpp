@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:04:35 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 12:07:05 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:50:04 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,23 @@ Zombie::Zombie(): name("Zombie")
 {
 }
 
-void Zombie::set_name(std::string name)
+void Zombie::set_name(std::string new_name)
 {
-	name = name;
+	name = new_name;
 }
 
 void Zombie::announce(void)
 {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout <<
+		CLR_GRNBOLD << name <<
+		CLR_RESET ": BraiiiiiiinnnzzzZ..."
+	<< std::endl;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << name << " destroyed..." << std::endl;
+	std::cout <<
+		CLR_DIMGRNBOLD << name << CLR_RESET
+		CLR_DIMRED " destroyed..." CLR_RESET
+	<< std::endl;
 }

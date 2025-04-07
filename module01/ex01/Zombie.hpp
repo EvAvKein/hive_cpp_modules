@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:01:51 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 12:06:52 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:07:30 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 # define ZOMBIE_HPP
 
 # include <iostream>
+
+# if COLOR
+#  define CLR_RESET			"\e[0m"
+#  define CLR_GRNBOLD		"\e[1;32m"
+#  define CLR_DIMGRNBOLD	"\e[2;1;32m"
+#  define CLR_REDBOLD		"\e[1;31m"
+#  define CLR_DIMRED		"\e[2;31m"
+# else
+#  define COLOR 0
+#  define CLR_RESET			""
+#  define CLR_GRNBOLD		""
+#  define CLR_DIMGRNBOLD	""
+#  define CLR_REDBOLD		""
+#  define CLR_DIMRED		""
+# endif
 
 class Zombie
 {

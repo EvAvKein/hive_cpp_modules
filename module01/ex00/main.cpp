@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:18:58 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 10:20:49 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:48:14 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int main()
 	try {
 		thirdZomb = newZombie("Thirdie");
 	} catch (...) {
-		std::cerr << "Can't allocate the a heap zombie (\"Thirdie\"), quitting!" << std::endl;
+		std::cerr << CLR_REDBOLD
+			"Can't allocate the heap zombie (\"Thirdie\"), quitting!"
+		CLR_RESET << std::endl;
 		return EXIT_FAILURE;
 	}
 	thirdZomb->announce();
@@ -44,7 +46,9 @@ int main()
 	try {
 		heapZomb = zombies_in_function_scope();
 	} catch (...) {
-		std::cerr << "Can't allocate the a heap zombie (\"Heapie\"), quitting!" << std::endl;
+		std::cerr << CLR_REDBOLD
+			"Can't allocate the heap zombie (\"Heapie\"), quitting!"
+		CLR_RESET << std::endl;
 		delete thirdZomb;
 		return EXIT_FAILURE;
 	}

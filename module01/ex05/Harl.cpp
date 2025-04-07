@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:41:31 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/07 10:58:10 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:51:51 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,37 @@ void Harl::complain(std::string level)
 			return (this->*funcs[i])();
 	}
 	
-	std::cerr << "Sorry, \"" << level << "\" is not a valid complaint :P" << std::endl;
+	std::cerr <<
+		CLR_CYNBOLD "Sorry, \""
+		CLR_RESET << level <<
+		CLR_CYNBOLD "\" is not a valid complaint :P"
+	CLR_RESET << std::endl;
 }	
 
 void Harl::debug(void)
 {
-	std::cout << "Debugging is tedious :(" << std::endl;
+	std::cout << CLR_PRPBOLD
+		"Debugging is tedious :("
+	CLR_RESET << std::endl;
 }
 
 void Harl::info(void)
 {
-	std::cout << "Info? Why do we need more of that? ;_;" << std::endl;
+	std::cout << CLR_BLUBOLD
+		"Info? Why do we need more of that? ;_;"
+	CLR_RESET << std::endl;
 }
 
 void Harl::warning(void)
 {
-	std::cout << "Warnings prevent me from doing what I wanna D:" << std::endl;
+	std::cout << CLR_YLWBOLD
+		"Warnings prevent me from doing what I wanna D:"
+	CLR_RESET << std::endl;
 }
 
 void Harl::error(void)
 {
-	std::cout << "Errors mean the thingy isn't working :c" << std::endl;
+	std::cout << CLR_REDBOLD
+		"Errors mean the thing isn't working :c"
+	CLR_RESET << std::endl;
 }
