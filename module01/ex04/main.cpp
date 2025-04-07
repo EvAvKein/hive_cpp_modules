@@ -49,33 +49,21 @@ static inline void prep_and_validation(int &argc, char **argv, t_data &data)
 	}
 }
 
-static inline void read_to_outfile_with_replacements(t_data& data, std::string& line, size_t& match_i)
+static inline void read_to_outfile_with_replacements(t_data& data)
 {
-	// FIX ISSUE WITH REPLACING NEWLINE
+	std::stringstream buffer;
+	buffer << data.infile.rdbuf();
+	
+	std::string contents = buffer.str();
+	size_t	match_i = contents.find(data.s1, 0);
 
-	// std::stringstream file;
-	// file << data.infile.rdbuf();
-
-	while (getline(data.infile, line, '\n'))
+	while (match_i != std::string::npos)
 	{
-		match_i = line.find(data.s1, 0);
-
-		if (match_i == std::string::npos)
-			data.outfile << line;
-		else
-		{
-			while (match_i != std::string::npos)
-			{
-				data.outfile << line.substr(0, match_i).append(data.s2);
-				line.erase(0, match_i + data.s1_len);
-				match_i = line.find(data.s1, 0);
-			}
-			data.outfile << line;
-		}
-
-		if (!data.infile.eof())
-			data.outfile << std::endl;
+		data.outfile << contents.substr(0, match_i).append(data.s2);
+		contents.erase(0, match_i + data.s1_len);
+		match_i = contents.find(data.s1, 0);
 	}
+	data.outfile << contents;
 }
 
 int main(int argc, char** argv)
@@ -94,9 +82,7 @@ int main(int argc, char** argv)
 	
 	try
 	{
-		std::string		line;
-		size_t			match_i;
-		read_to_outfile_with_replacements(data, line, match_i);
+		read_to_outfile_with_replacements(data);
 		
 		data.infile.close();
 		data.outfile.close();
