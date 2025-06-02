@@ -6,7 +6,7 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/06/02 21:53:11 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/06/02 22:02:56 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,4 +47,4 @@ debug: COMPILE_FLAGS += $(DEBUG_FLAGS)
 debug: re
 
 # PHONY #
-.PHONY: all clean fclean re neat color debug
+.PHONY: all clean fclean re neat debug
