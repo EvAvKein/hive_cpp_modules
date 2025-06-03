@@ -6,7 +6,7 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/04/07 15:29:48 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/06/03 11:02:40 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ OBJ := $(SRC:%.cpp=%.o)
 all: $(NAME)
 
 %.o: %.cpp
-	${CC} $(COMPILE_FLAGS) -c $< -o $@
+	$(CC) $(COMPILE_FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(HEADERS)
-	${CC} $(COMPILE_FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(COMPILE_FLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	@rm -f $(OBJ)
