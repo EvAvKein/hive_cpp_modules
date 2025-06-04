@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:36:30 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/03/29 19:33:04 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/03 15:15:33 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 		str = argv[i_str];
 		strlen = str.length();
 		for (size_t i_chr = 0; i_chr < strlen; i_chr++)
-			std::cout << (char)std::toupper(str[i_chr]);
+			std::cout << static_cast<char>(std::toupper(str[i_chr]));
 	}
 	std::cout << std::endl;
 	return EXIT_SUCCESS;
