@@ -47,21 +47,6 @@ Fixed::~Fixed(void)
 Fixed::Fixed(const int value)
 {
 	std::cout << "Int constructor called" << std::endl;
-	
-	// if (value >= 0 && value > getFixedIntMax())
-	// 	throw std::out_of_range(
-	// 		"Fixed constructor recieved positive int out of range ("
-	// 		+ std::to_string(value) + " is outside "
-	// 		+ std::to_string(0) + " to "
-	// 		+ std::to_string(getFixedIntMax()) + ")"
-	// 	);
-	// else if (value < 0 && value < ~getFixedIntMax())
-	// 	throw std::out_of_range(
-	// 		"Fixed constructor recieved negative int out of range ("
-	// 		+ std::to_string(value) + " is outside "
-	// 		+ std::to_string(-1) + " to "
-	// 		+ std::to_string(~getFixedIntMax()) + ")"
-	// 	);
 	this->setRawBits(value << _bits);
 }
 
@@ -109,13 +94,13 @@ int Fixed::setRawBits(int const raw)
 
 // CUSTOM
 
-// int Fixed::getFixedIntMax(void) const
-// {
-// 	static int fixedIntMax = static_cast<int>(
-// 		((~0 ^ (static_cast<unsigned int>(1) << std::numeric_limits<int>::digits))
-// 			<< _bits) >> _bits);
-// 	return fixedIntMax;
-// }
+int Fixed::getFixedIntMax(void) const
+{
+	static int fixedIntMax = static_cast<int>(
+		((~0 ^ (static_cast<unsigned int>(1) << std::numeric_limits<int>::digits))
+			<< _bits) >> _bits);
+	return fixedIntMax;
+}
 
 int Fixed::toFractionalValue(void) const
 {
