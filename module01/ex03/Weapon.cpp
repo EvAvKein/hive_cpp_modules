@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:41:00 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/01 16:52:30 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/10 09:21:39 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Weapon::~Weapon()
 {
 }
 
-const std::string Weapon::getType()
+const std::string& Weapon::getType()
 {
 	return type;
 }
