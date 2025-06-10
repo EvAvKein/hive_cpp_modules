@@ -83,7 +83,7 @@ void Account::displayAccountsInfos(void)
 	_displayTimestamp();
 	std::cout <<
 		"accounts:" << _nbAccounts <<
-		";amount:" << _totalAmount <<
+		";total:" << _totalAmount <<
 		";deposits:" << _totalNbDeposits << 
 		";withdrawals:" << _totalNbWithdrawals
 	<< std::endl;
@@ -96,9 +96,10 @@ void Account::makeDeposit(int deposit)
 	std::cout <<
 		"index:" << _accountIndex <<
 		";p_amount:" << _amount <<
-		";deposits:" << deposit;
+		";deposit:" << deposit;
 	_amount += deposit;
 	_totalAmount += deposit;
+	_totalNbDeposits++;
 	std::cout << 
 		";amount:" << _amount <<
 		";nb_deposits:" << ++_nbDeposits
@@ -135,7 +136,6 @@ int Account::checkAmount(void) const
 
 int main()
 {
-	// int	const amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 };
 	Account accounts[8] = {
 		Account(42), Account(54), Account(957), Account(432),
 		Account(1234), Account(0), Account(754), Account(16576)
