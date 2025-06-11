@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:59:58 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/10 18:04:33y ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/11 10:52:05 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value)
 {
 	std::cout << "Float constructor called" << std::endl;
-	
 	this->_value = roundf(value * (1 << _bits));
 }
 
@@ -109,16 +108,17 @@ int Fixed::toFractionalValue(void) const
 
 void Fixed::printRawBits(void)
 {
-	int i = sizeof(int) * 8;
+	int byteSize = std::numeric_limits<unsigned char>::digits;
+	int i = sizeof(int) * byteSize;
 	unsigned char chr;
     
 	while (i)
 	{
 		chr = ((this->_value >> --i) & 1) + '0';
 		std::cout << chr;
-		if (!(i % 4))
+		if (!(i % (byteSize / 2)))
 			std::cout << " ";
-		if (!(i % 8) && i >= 8)
+		if (!(i % byteSize) && i >= byteSize)
 			std::cout << "| ";
 	}
 	std::cout << std::endl;
