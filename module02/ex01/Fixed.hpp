@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:00:00 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/10 20:52:18 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:43:07 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class Fixed
 		Fixed(const int value);
 		Fixed(const float value);
 
-		float toFloat( void ) const;
-		int toInt( void ) const;
+		float toFloat(void) const;
+		int toInt(void) const;
 
 		int getRawBits(void) const;
 		int setRawBits(int const raw);
