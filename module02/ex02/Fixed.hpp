@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:00:00 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/12 12:16:28 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/12 16:46:33 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 #include <iostream>
 #include <cmath>
 
+/**
+ * 
+ * Bits layout:
+ * 
+ * 0b siii iiii | iiii iiii | iiii iiii | ffff ffff
+ * 
+ * f = fractional value
+ * s = sign
+ * i = integer value 
+ * 
+ */
 class Fixed
 {
 	public:

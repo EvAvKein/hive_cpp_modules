@@ -6,32 +6,11 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:59:45 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/12 16:44:44 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/12 16:46:10 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-/**
- * 
- * Bits layout:
- * 
- * 0b siii iiii | iiii iiii | iiii iiii | ffff ffff
- * 
- *   0b siii iiii | iiii iiii | iiii iiii | ffff ffff / 256
- *=> 0b s000 0000 | 0iii iiii | iiii iiii | iiii iiii
- *
- *   0b s000 0000 | 0iii iiii | iiii iiii | iiii iiii * 256
- *   0b siii iiii | iiii iiii | iiii iiii | 0000 0000
- *
- *			ff		    ff			ff			ff
- *   0b siii iiii | iiii iiii | ffff ffff | 0000 0000
- *
- * f = fractional value
- * s = sign
- * i = integer value 
- * 
- */
 
 #if false
 
