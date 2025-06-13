@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:59:58 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/11 10:52:05 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/13 10:02:54 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ int Fixed::getRawBits(void) const
 	return this->_value;
 }
 
-int Fixed::setRawBits(int const raw)
+void Fixed::setRawBits(int const raw)
 {
 	// std::cout << "setRawBits member function called" << std::endl;
-	return this->_value = raw;
+	this->_value = raw;
 }
 
 // CUSTOM

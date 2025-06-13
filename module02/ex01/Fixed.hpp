@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:00:00 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/12 16:46:51 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/13 10:02:07 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ class Fixed
 		int toInt(void) const;
 
 		int getRawBits(void) const;
-		int setRawBits(int const raw);
+		void setRawBits(int const raw);
 
 		int	getFixedIntMax(void) const;
 		int toFractionalValue(void) const;
