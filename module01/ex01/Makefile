@@ -6,11 +6,11 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/06/03 11:02:12 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/06/20 17:04:33 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := testZombies_ex01
+NAME := ZombieHorde
 
 SRC := main.cpp \
 	   Zombie.cpp \

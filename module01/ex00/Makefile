@@ -6,11 +6,11 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/06/03 11:01:16 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/06/20 17:03:59 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := testZombies_ex00
+NAME := Zombie
 
 SRC := main.cpp \
 	   Zombie.cpp \

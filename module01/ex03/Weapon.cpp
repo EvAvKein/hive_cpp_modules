@@ -6,13 +6,13 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:41:00 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/10 09:21:39 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/20 16:54:37 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(): type("Weaponless")
+Weapon::Weapon(): type("[Weaponless]")
 {
 }
 

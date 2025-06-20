@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:20:52 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/07 15:50:15 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/20 16:51:05 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ Zombie* zombieHorde(int N, std::string name)
 		std::cerr << CLR_REDBOLD
 			"ERROR: Negative zombieHorde is not possible!\n"
 		CLR_RESET << std::endl;
-		throw ;
 	}
 	
 	Zombie* horde = new Zombie[N];

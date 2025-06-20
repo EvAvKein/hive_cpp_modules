@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 	}
 	catch (const std::exception& error)
 	{
-		if (!data.infile.rdstate())
+		if (data.infile.is_open())
 			data.infile.close();
 		std::cerr << error.what() << std::endl;
 		return EXIT_FAILURE;
@@ -80,15 +80,16 @@ int main(int argc, char** argv)
 	try
 	{
 		read_to_outfile_with_replacements(data);
-		
-		data.infile.close();
-		data.outfile.close();
 	}
 	catch(const std::exception& e)
 	{
+		data.infile.close();
+		data.outfile.close();
 		std::cerr << e.what() << '\n';
 		return EXIT_FAILURE;
 	}
+	data.infile.close();
+	data.outfile.close();
 
 	return EXIT_SUCCESS;
 }

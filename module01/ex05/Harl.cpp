@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:41:31 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/07 15:51:51 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/20 17:01:51 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 Harl::Harl()
 {
-	std::cout << "Harl arrived!" << std::endl;
 }
 
 Harl::~Harl()
 {
-	std::cout << "Harl left!" << std::endl;
 }
 
 void Harl::complain(std::string level)

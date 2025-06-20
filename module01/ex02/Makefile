@@ -6,7 +6,7 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/06/03 11:02:29 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/06/20 17:03:36 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 %.o: %.cpp
 	$(CC) $(COMPILE_FLAGS) -D COLOR=$(if $(COLOR),1,0) -c $< -o $@
 
-$(NAME): $(OBJ) $(HEADERS)
+$(NAME): $(OBJ)
 	$(CC) $(COMPILE_FLAGS) $(OBJ) -o $(NAME)
 
 clean:

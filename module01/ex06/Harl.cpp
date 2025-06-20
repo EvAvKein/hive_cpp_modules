@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:41:31 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/04/07 15:52:39 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/20 16:57:58 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@ void Harl::complain(std::string level)
 
 	while (i < 4 && names[i] != level)
 		i++;
-	
-	if (i == 4)
-	{
-		std::cerr <<
-			CLR_CYNBOLD "Sorry, \""
-			CLR_RESET << level <<
-			CLR_CYNBOLD "\" is not a valid complaint :P"
-		CLR_RESET << std::endl;
-		return ;
-	} 
 
 	std::cout << "[ " << names[i] << " ]" << std::endl;
 	switch (i)
@@ -51,6 +41,12 @@ void Harl::complain(std::string level)
 			(this->*funcs[i++])();
 		case 3:
 			(this->*funcs[i++])();
+		default:
+			std::cerr <<
+				CLR_CYNBOLD "Sorry, \""
+				CLR_RESET << level <<
+				CLR_CYNBOLD "\" is not a valid complaint :P"
+			CLR_RESET << std::endl;
 	}
 }	
 
