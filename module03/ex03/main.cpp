@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 10:07:02 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/17 19:35:14 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:10:08 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 int main (void)
 {
+
+	std::cout << std::endl;
+	{
+		DiamondTrap guardTrap("GU4RD-TP");
+		std::string target = "FR4G-TP";
+		DiamondTrap fragTrap("FR4G-TP");
+
+		guardTrap = fragTrap;
+	}
+	std::cout << std::endl;
 	{
 		DiamondTrap defaultTrap;
 		

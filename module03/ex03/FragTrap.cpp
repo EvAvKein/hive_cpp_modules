@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:11:54 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/16 14:49:31 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:07:57 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ FragTrap::FragTrap(const FragTrap &copied)
 FragTrap &FragTrap::operator=(const FragTrap &assigned)
 {
 	if (this != &assigned)
-		*this = assigned;
+	{
+		name = assigned.name;
+		hitPoints = assigned.hitPoints;
+		energyPoints = assigned.energyPoints;
+		attackDamage = assigned.attackDamage;
+	}
 	std::cout << 
 		"FragTrap " << name << " assigned to FragTrap " << assigned.name << "!"
 	<< std::endl;

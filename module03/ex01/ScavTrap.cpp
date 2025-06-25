@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:11:54 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/16 14:46:43 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:06:36 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ ScavTrap::ScavTrap(const ScavTrap &copied)
 ScavTrap &ScavTrap::operator=(const ScavTrap &assigned)
 {
 	if (this != &assigned)
-		*this = assigned;
+	{
+		name = assigned.name;
+		hitPoints = assigned.hitPoints;
+		energyPoints = assigned.energyPoints;
+		attackDamage = assigned.attackDamage;
+	}
 	std::cout <<
 		name << " assigned to ScavTrap " << assigned.name << "!"
 	<< std::endl;

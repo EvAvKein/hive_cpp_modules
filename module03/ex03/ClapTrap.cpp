@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 09:22:41 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/16 14:45:43 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:07:38 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ ClapTrap::ClapTrap(const ClapTrap &copied)
 ClapTrap &ClapTrap::operator=(const ClapTrap &assigned)
 {
 	if (this != &assigned)
-		*this = assigned;
+	{
+		name = assigned.name;
+		hitPoints = assigned.hitPoints;
+		energyPoints = assigned.energyPoints;
+		attackDamage = assigned.attackDamage;
+	}
 	std::cout <<
 		name << " assigned to ClapTrap " << assigned.name << "!"
 	<< std::endl;
