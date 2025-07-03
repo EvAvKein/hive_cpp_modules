@@ -20,7 +20,6 @@ class Brain
 {
 	public:
 		Brain(void);
-		Brain(std::string ideas[100]);
 		Brain(const Brain& copied);
 		Brain &operator=(const Brain& assigned);
 		virtual ~Brain(void);

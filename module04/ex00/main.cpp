@@ -14,6 +14,16 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
+/**
+ * NOTE: About usage of std::nothrow
+ * 
+ * Using std::nothrow to more closely match the subject's provided code,
+ * as using try-catch with proper cleanup would require declaration
+ * outside the try-catch block and assignment inside inside, meaning
+ * that they can't be constant and then it wouldn't validate
+ * getType()'s const.
+ */
+
 int main (void)
 {
 	{
@@ -100,3 +110,4 @@ int main (void)
 		delete j;
 	}
 }
+

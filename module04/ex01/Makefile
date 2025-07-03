@@ -17,12 +17,14 @@ SRC := main.cpp \
 	   Cat.cpp	\
 	   Dog.cpp \
 	   WrongAnimal.cpp \
-	   WrongCat.cpp
+	   WrongCat.cpp \
+	   Brain.cpp
 HEADERS := Animal.hpp \
 		   Cat.hpp \
 		   Dog.hpp \
 		   WrongAnimal.cpp \
-		   WrongCat.hpp
+		   WrongCat.hpp \
+		   Brain.hpp
 
 CC := c++
 COMPILE_FLAGS := -Wall -Wextra -Werror -std=c++20

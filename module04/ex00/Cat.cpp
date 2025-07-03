@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 11:38:22 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/06/29 17:29:12 by username         ###   ########.fr       */
+/*   Updated: 2025/06/29 17:29:12 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,4 @@ void Cat::makeSound(void) const
 {
 	std::cout << "Meow. Purrr." << std::endl;
 }
+

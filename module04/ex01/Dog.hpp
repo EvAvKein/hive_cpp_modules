@@ -15,6 +15,7 @@
 # define DOG_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog: virtual public Animal
 {
@@ -25,6 +26,9 @@ class Dog: virtual public Animal
 		virtual ~Dog(void);
 
 		void makeSound(void) const override;
+
+	private:
+		Brain *brain;
 };
 
 #endif
