@@ -2,7 +2,7 @@
 
 My 10th project at 42 Network's Hive Helsinki 🐝
 
-Introductions to C++
+Introductions from C to C++
 
 > [!TIP]
 > If you're at a 42 school and doing this project: It's genuinely so much better to ask fellow students instead of reading online solutions ✨
