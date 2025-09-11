@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,33 +11,39 @@
 /* ************************************************************************** */
 
 #pragma once
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
-# include <iostream>
-# include <stdexcept>
+# include "Bureaucrat.hpp"
 
-class Bureaucrat
+class Form
 {
 	private:
 		const std::string	name;
-		int					grade;
-		// Could've made the grade type `u_int8_t`,
-		// but those wouldn't print to ostream without weird explicit plus signs
+		const int			grade_sign_req;
+		const int			grade_exec_req;
+		bool				is_signed;
 
 	public:
-		Bureaucrat(void);
-		Bureaucrat(std::string const & name, int grade);
-		Bureaucrat(const Bureaucrat& copied);
-		Bureaucrat &operator=(const Bureaucrat& assigned) = delete;
-		virtual ~Bureaucrat(void);
+		Form(void);
+		Form(std::string const& name, int grade_sign_req, int grade_exec_req);
+		Form(const Form& copied);
+		Form &operator=(const Form& assigned) = delete;
+		virtual ~Form(void);
 
-		std::string const&	getName(void)	const;
-		int const&			getGrade(void)	const;
+		std::string const&	getName(void)			const;
+		int const&			getGradeSignReq(void)	const;
+		int const&			getGradeExecReq(void)	const;
+		bool const&			getIsSigned(void)		const;
 
-		void	incrementGrade(void);
-		void	decrementGrade(void);
+		void	beSigned(Bureaucrat& signee);
 
+		class DoubleSigningException: public std::logic_error
+		{
+			public:
+				DoubleSigningException(void);
+				const char* what(void) const throw();
+		};
 		class GradeTooHighException: public std::out_of_range
 		{
 			public:
@@ -52,6 +58,6 @@ class Bureaucrat
 		};
 };
 
-std::ostream	&operator<<(std::ostream &ostream, Bureaucrat &bureaucrat);
+std::ostream	&operator<<(std::ostream &ostream, Form &form);
 
 #endif

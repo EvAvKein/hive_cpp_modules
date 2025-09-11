@@ -17,6 +17,10 @@
 # include <iostream>
 # include <stdexcept>
 
+# ifndef Form
+	class Form;
+# endif
+
 class Bureaucrat
 {
 	private:
@@ -37,6 +41,8 @@ class Bureaucrat
 
 		void	incrementGrade(void);
 		void	decrementGrade(void);
+
+		void	signForm(Form& form);
 
 		class GradeTooHighException: public std::out_of_range
 		{

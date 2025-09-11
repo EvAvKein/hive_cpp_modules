@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include <stdexcept>
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void): name("Jack"), grade(150)
 {
@@ -108,6 +107,11 @@ void	Bureaucrat::decrementGrade(void)
 		"Corporate demoted bureaucrat " << name <<
 		" to grade " << ++grade << ". Commiserations."
 	<< std::endl;
+}
+
+void	Bureaucrat::signForm(Form& form)
+{
+	form.beSigned(*this);
 }
 
 std::ostream	&operator<<(std::ostream &ostream, Bureaucrat &bureaucrat)
