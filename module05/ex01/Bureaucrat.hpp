@@ -48,13 +48,11 @@ class Bureaucrat
 		{
 			public:
 				GradeTooHighException(void);
-				const char* what(void) const throw();
 		};
 		class GradeTooLowException: public std::out_of_range
 		{
 			public:
 				GradeTooLowException(void);
-				const char* what(void) const throw();
 		};
 };
 

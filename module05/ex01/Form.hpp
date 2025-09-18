@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -38,23 +38,15 @@ class Form
 
 		void	beSigned(Bureaucrat& signee);
 
-		class DoubleSigningException: public std::logic_error
-		{
-			public:
-				DoubleSigningException(void);
-				const char* what(void) const throw();
-		};
 		class GradeTooHighException: public std::out_of_range
 		{
 			public:
 				GradeTooHighException(void);
-				const char* what(void) const throw();
 		};
 		class GradeTooLowException: public std::out_of_range
 		{
 			public:
 				GradeTooLowException(void);
-				const char* what(void) const throw();
 		};
 };
 

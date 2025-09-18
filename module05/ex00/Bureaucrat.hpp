@@ -27,9 +27,9 @@ class Bureaucrat
 
 	public:
 		Bureaucrat(void);
-		Bureaucrat(std::string const & name, int grade);
-		Bureaucrat(const Bureaucrat& copied);
-		Bureaucrat &operator=(const Bureaucrat& assigned) = delete;
+		Bureaucrat(std::string const& name, int grade);
+		Bureaucrat(Bureaucrat const& copied);
+		Bureaucrat &operator=(Bureaucrat const& assigned) = delete;
 		virtual ~Bureaucrat(void);
 
 		std::string const&	getName(void)	const;

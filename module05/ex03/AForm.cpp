@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:39:37 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/09/18 11:50:50 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/09/18 11:45:24 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	AForm::beSigned(Bureaucrat const& signee)
 	{
 		std::cout <<
 			"Bureaucrat " << signee.getName() <<
-	 		" attempted to sign already-signed form " << name
+			" attempted to sign already-signed form " << name
 		<< std::endl;
 		throw DoubleSigningException();
 	}

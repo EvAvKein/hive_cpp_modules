@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void): name("Jack"), grade(150)
 {
@@ -55,7 +56,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copied): name(copied.name), grade(copie
 
 Bureaucrat::~Bureaucrat(void)
 {
-	std::cout << 
+	std::cout <<
 		"A bureaucrat named " << name <<
 		" (grade " << grade  << ") got fired."
 	<< std::endl;
@@ -71,11 +72,11 @@ int const& Bureaucrat::getGrade(void) const
 	return grade;
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(void): std::out_of_range("Grade too high")
+Bureaucrat::GradeTooHighException::GradeTooHighException(void): std::out_of_range("Grade is too high")
 {
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(void): std::out_of_range("Grade too low")
+Bureaucrat::GradeTooLowException::GradeTooLowException(void): std::out_of_range("Grade is too low")
 {
 }
 
@@ -99,9 +100,20 @@ void	Bureaucrat::decrementGrade(void)
 	<< std::endl;
 }
 
-void	Bureaucrat::signForm(Form& form)
+void	Bureaucrat::signForm(AForm& form) const
 {
 	form.beSigned(*this);
+	// ^ Outcome printouts are inside here
+}
+
+void	Bureaucrat::executeForm(AForm const& form) const
+{
+	form.execute(*this);
+	// ^ Failure printouts are inside here
+	std::cout <<
+		getName() << " executed " << form.getName() << "."
+	<< std::endl;
+
 }
 
 std::ostream	&operator<<(std::ostream &ostream, Bureaucrat &bureaucrat)

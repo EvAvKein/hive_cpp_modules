@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void): name("Jack"), grade(150)
@@ -71,22 +72,12 @@ int const& Bureaucrat::getGrade(void) const
 	return grade;
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(void): std::out_of_range("")
+Bureaucrat::GradeTooHighException::GradeTooHighException(void): std::out_of_range("Grade is too high")
 {
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(void): std::out_of_range("")
+Bureaucrat::GradeTooLowException::GradeTooLowException(void): std::out_of_range("Grade is too low")
 {
-}
-
-const char* Bureaucrat::GradeTooLowException::what(void) const throw()
-{
-	return "Grade is too low";
-}
-
-const char* Bureaucrat::GradeTooHighException::what(void) const throw()
-{
-	return  "Grade is too high";
 }
 
 void	Bureaucrat::incrementGrade(void)
@@ -109,9 +100,20 @@ void	Bureaucrat::decrementGrade(void)
 	<< std::endl;
 }
 
-void	Bureaucrat::signForm(AForm& form)
+void	Bureaucrat::signForm(AForm& form) const
 {
 	form.beSigned(*this);
+	// ^ Outcome printouts are inside here
+}
+
+void	Bureaucrat::executeForm(AForm const& form) const
+{
+	form.execute(*this);
+	// ^ Failure printouts are inside here
+	std::cout << 
+		getName() << " executed " << form.getName() << "."
+	<< std::endl;
+
 }
 
 std::ostream	&operator<<(std::ostream &ostream, Bureaucrat &bureaucrat)

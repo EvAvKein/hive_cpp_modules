@@ -6,7 +6,7 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/09/18 10:58:45 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/09/18 11:43:05 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,14 @@ SRC := main.cpp \
 	   AForm.cpp \
 	   ShrubberyCreationForm.cpp \
 	   RobotomyRequestForm.cpp \
-	   PresidentialPardonForm.cpp
+	   PresidentialPardonForm.cpp \
+	   Intern.cpp
 HEADERS := Bureaucrat.hpp \
 		   AForm.hpp \
 		   ShrubberyCreationForm.hpp \
 		   RobotomyRequestForm.hpp \
-		   PresidentialPardonForm.hpp
+		   PresidentialPardonForm.hpp \
+		   Intern.hpp
 
 CC := c++
 COMPILE_FLAGS := -Wall -Wextra -Werror -std=c++20

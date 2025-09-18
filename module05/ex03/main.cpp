@@ -6,61 +6,57 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 12:33:12 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/09/18 11:47:20 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/09/18 11:42:22 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main(void)
 {
-	Bureaucrat				boss("Boss", 2);
-	ShrubberyCreationForm	shrubbery("ascii");
-	RobotomyRequestForm		robotomy("Insubordinate");
-	PresidentialPardonForm	pardon("Dohpaz Xorbelbeeb");
+	Intern stanley;
 
-	boss.signForm(shrubbery);
-	boss.signForm(robotomy);
-	boss.signForm(pardon);
-
-	std::cout << '\n';
-
-	Bureaucrat	intern;
+	AForm	*form = nullptr;
 
 	try {
-		intern.executeForm(shrubbery);
+		form = stanley.makeForm("UnFORMulated", "The Boss");
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	try {
-		intern.executeForm(robotomy);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	try {
-		intern.executeForm(pardon);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-
-	std::cout << '\n';
-	
-	try {
-		boss.executeForm(shrubbery);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+	std::cout << "Form pointer is " << form << std::endl;
 
 	std::cout << '\n';
 
-	for (int i = 0; i < 10; i++)
-		boss.executeForm(robotomy);
+	try {
+		form = stanley.makeForm("Shrubbery Creation", "empty field");
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+		return (EXIT_FAILURE);
+	}
+	std::cout << *form << std::endl;
+	delete form;
 
 	std::cout << '\n';
 
-	boss.executeForm(pardon);
+	try {
+		form = stanley.makeForm("Robotomy Request", "Roboto");
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+		return (EXIT_FAILURE);
+	}
+	std::cout << *form << std::endl;
+	delete form;
+
+	std::cout << '\n';
+
+	try {
+		form = stanley.makeForm("Presidential Pardon", "Luigi");
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+		return (EXIT_FAILURE);
+	}
+	std::cout << *form << std::endl;
+	delete form;
 
 	return (EXIT_SUCCESS);
 }

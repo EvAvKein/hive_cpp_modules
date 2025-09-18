@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:39:37 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/08/25 13:23:55 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/09/18 11:48:43 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ Form::Form(const Form &copied):
 
 Form::~Form(void)
 {
-	std::cout << 
+	std::cout <<
 		"A " << name << " form got shredded."
 	<< std::endl;
 }
@@ -84,7 +84,7 @@ void	Form::beSigned(Bureaucrat& signee)
 {
 	if (is_signed)
 	{
-		std::cout << 
+		std::cout <<
 			"Bureaucrat " << signee.getName() <<
 	 		" attempted to sign already-signed form " << name
 		<< std::endl;
@@ -93,7 +93,7 @@ void	Form::beSigned(Bureaucrat& signee)
 
 	if (signee.getGrade() > grade_sign_req)
 	{
-		std::cout << 
+		std::cout <<
 			"Bureaucrat " << signee.getName() << " (grade " << signee.getGrade() << ")" <<
 			" failed to sign form " << name << " of higher grade " << getGradeSignReq() << "."
 		<< std::endl;
@@ -101,33 +101,21 @@ void	Form::beSigned(Bureaucrat& signee)
 	}
 
 	is_signed = true;
+	std::cout <<
+		"Bureaucrat " << signee.getName() << " signed " << name << "."
+	<< std::endl;
 }
 
-Form::DoubleSigningException::DoubleSigningException(void): std::logic_error("")
+Form::DoubleSigningException::DoubleSigningException(void): std::logic_error("Form already signed")
 {
 }
 
-Form::GradeTooHighException::GradeTooHighException(void): std::out_of_range("")
+Form::GradeTooHighException::GradeTooHighException(void): std::out_of_range("Grade too high")
 {
 }
 
-Form::GradeTooLowException::GradeTooLowException(void): std::out_of_range("")
+Form::GradeTooLowException::GradeTooLowException(void): std::out_of_range("Grade too low")
 {
-}
-
-const char* Form::DoubleSigningException::what(void) const throw()
-{
-	return "Form already signed";
-}
-
-const char* Form::GradeTooLowException::what(void) const throw()
-{
-	return "Grade is too low";
-}
-
-const char* Form::GradeTooHighException::what(void) const throw()
-{
-	return  "Grade is too high";
 }
 
 std::ostream	&operator<<(std::ostream &ostream, Form &form)
@@ -136,7 +124,6 @@ std::ostream	&operator<<(std::ostream &ostream, Form &form)
 		form.getName() <<
 		", " << (form.getIsSigned() ? "signed" : "unsigned") << " form"
 		" of signing requirement of " << form.getGradeSignReq() <<
-		" and executing requirement of " << form.getGradeExecReq() << "."
-	<< std::endl;
+		" and executing requirement of " << form.getGradeExecReq() << ".";
 	return ostream;
 }
