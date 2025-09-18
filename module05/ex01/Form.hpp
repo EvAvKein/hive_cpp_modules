@@ -38,6 +38,11 @@ class Form
 
 		void	beSigned(Bureaucrat& signee);
 
+		class DoubleSigningException: public std::logic_error
+		{
+			public:
+				DoubleSigningException(void);
+		};
 		class GradeTooHighException: public std::out_of_range
 		{
 			public:
