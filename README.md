@@ -1,6 +1,6 @@
 # CPP MODULES
 
-My 10th project at 42 Network's Hive Helsinki 🐝
+My 11th project at 42 Network's Hive Helsinki 🐝
 
 Introductions to C++
 
@@ -34,4 +34,5 @@ This project's about introducing us to C++ through modules focused on different 
 ## Credits
 
 - [Eve Keinan](https://github.com/EvAvKein)
+
 
