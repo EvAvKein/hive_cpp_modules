@@ -107,7 +107,7 @@ ScalarConverter::literalType ScalarConverter::parseType(std::string &str)
 	if (!hasWholeDigit && !hasFractionalDigit)
 		return INVALID;
 
-	if (!decimalIndex && fCharIndex == str.npos)
+	if (decimalIndex == str.npos && fCharIndex == str.npos)
 		return INT;
 
 	if (fCharIndex != str.npos)
@@ -118,71 +118,95 @@ ScalarConverter::literalType ScalarConverter::parseType(std::string &str)
 
 void ScalarConverter::convertFromChar(std::string& str)
 {
-	if (str[0] < 0 || str[0] > 127)
-		std::cout << "char: impossible\n";
-	else if (!std::isprint(str[0]))
-		std::cout << "char: Non displayable\n";
-	else
-		std::cout << "char: '" << str[0] << "'\n";
+	printChar(str[0]);
+	std::cout << "\n";
 
 	int integer = static_cast<int>(str[0]);
-	std::cout << "int: " << integer << "\n";
+	printInt(integer);
+	std::cout << "\n";
 
 	float flt = static_cast<float>(str[0]);
-	std::cout << "float: " << flt << ".0f\n";
+	printFloat(flt);
+	std::cout << ".0f\n";
 
-	int dbl = static_cast<double>(str[0]);
-	std::cout << "double: " << dbl << ".0\n";
+	double dbl = static_cast<double>(str[0]);
+	printDouble(dbl);
+	std::cout << ".0\n";
+
+	std::cout << std::flush;
 }
 
 void ScalarConverter::convertFromInt(std::string& str)
 {
-	char chr;
-	int integer;
-	float flt;
-	double dbl;
-
+	// std::cout << "NOT YET IMPLEMENTED" << std::endl;
 	try
 	{
-		integer = std::stoi(str);
-		std::cout << "char: impossible\n";
-		std::cout << "char: impossible\n";
+		int integer = std::stoi(str);
+		char chr = static_cast<char>(integer);
+
+		printChar(chr);
+		std::cout << '\n';
+
+		printInt(integer);
+		std::cout << '\n';
+
+		float flt = static_cast<float>(integer);
+		printFloat(flt);
+		std::cout << ".0f\n"; 
+
+		double dbl = static_cast<double>(integer);
+		printDouble(dbl);
+		std::cout << ".0\n";
+
+		std::cout << std::flush;
 	}
 	catch (...)
-		{};
-
-	if (str[0] < 0 || str[0] > 127)
-		std::cout << "char: impossible\n";
-	else if (!std::isprint(str[0]))
-		std::cout << "char: Non displayable\n";
-	else
-		std::cout << "char: '" << str[0] << "'\n";
-
-	try {
-		int integer = static_cast<int>(str[0]);
-
-	}
-	std::cout << "int: " << integer << "\n";
-
-	float flt = static_cast<float>(str[0]);
-	std::cout << "float: " << flt << ".0f\n";
-
-	int dbl = static_cast<double>(str[0]);
-	std::cout << "double: " << dbl << ".0\n";
-
+	{
+		std::cout
+			<< "char: impossible\n"
+			<< "int: impossible\n"
+			<< "float: impossible\n"
+			<< "double: impossible\n"
+		<< std::flush;
+	};
 
 	(void) str;
 }
 
 void ScalarConverter::convertFromFloat(std::string& str)
 {
+	std::cout << "FLOAT CONVERSION NOT YET IMPLEMENTED" << std::endl;
 	(void) str;
-
 }
 
 void ScalarConverter::convertFromDouble(std::string& str)
 {
+	std::cout << "DOUBLE CONVERSION NOT YET IMPLEMENTED" << std::endl;
 	(void) str;
+}
 
+void ScalarConverter::printChar(char& chr)
+{
+	if (chr < 0 || chr > 127)
+		std::cout << "char: impossible";
+	else if (!std::isprint(chr))
+		std::cout << "char: Non displayable";
+	else
+		std::cout << "char: '" << chr << "'";
+}
+
+void ScalarConverter::printInt(int& integer)
+{
+	std::cout << "int: " << integer;
+}
+
+void ScalarConverter::printFloat(float& flt)
+{
+	std::cout << "float: " << flt;
+}
+
+void ScalarConverter::printDouble(double& dbl)
+{
+	std::cout << "double: " << dbl;
 }
 

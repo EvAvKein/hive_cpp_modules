@@ -39,6 +39,11 @@ private:
 
 	static literalType parseType(std::string& str);
 
+	static void printChar(char& chr);
+	static void printInt(int& integer);
+	static void printFloat(float& flt);
+	static void printDouble(double& dbl);
+
 	static void convertFromChar(std::string& str);
 	static void convertFromInt(std::string& str);
 	static void convertFromFloat(std::string& str);
