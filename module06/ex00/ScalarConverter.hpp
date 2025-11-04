@@ -37,12 +37,12 @@ private:
 		DBL,
 	};
 
-	static literalType parseType(std::string &str);
+	static literalType parseType(std::string& str);
 
-	static void printStrToChar(std::string_view str);
-	static void printStrToInt(std::string_view str);
-	static void printStrToFloat(std::string_view str);
-	static void printStrToDouble(std::string_view str);
+	static void convertFromChar(std::string& str);
+	static void convertFromInt(std::string& str);
+	static void convertFromFloat(std::string& str);
+	static void convertFromDouble(std::string& str);
 };
 
 #endif

@@ -20,31 +20,36 @@ void ScalarConverter::convert(std::string_view str)
 
 	switch (type)
 	{
-	case INVALID:
-	{
+		case INVALID:
+		{
+				std::cout << "Bad :)" << std::endl;
+				break;
+		}
+		case CHAR:
+		{
+				convertFromChar(convertStr);
+				break;
+		}
+		case INT:
+		{
+				convertFromInt(convertStr);
+				break;
+		}
+		case FLT:
+		{
+				convertFromFloat(convertStr);
+				break;
+		}
+		case DBL:
+		{
+				convertFromDouble(convertStr);
+				break;
+		}
+		default:
+		{
+			std::cout << "Impossible condition" << std::endl;
+		}
 	}
-	case CHAR:
-	{
-	}
-	case INT:
-	{
-	}
-	case FLT:
-	{
-	}
-	case DBL:
-	{
-	}
-	default:
-	{
-		std::cout << "Impossible condition" << std::endl;
-	}
-	}
-
-	printStrToChar(str);
-	printStrToInt(str);
-	printStrToFloat(str);
-	printStrToDouble(str);
 }
 
 ScalarConverter::literalType ScalarConverter::parseType(std::string &str)
@@ -60,13 +65,18 @@ ScalarConverter::literalType ScalarConverter::parseType(std::string &str)
 	if (str == "+inff" || str == "-inff" || str == "nanf")
 		return FLT;
 
+	if ( (strlen == 1 && !std::isdigit(str[0]))
+		|| (strlen == 3 && str[0] == '\'' && str[2] == '\'') )
+	{
+		if (str[0] == '\'' && str[2] == '\'')
+			str.erase(2, 1).erase(0, 1);
+		return CHAR;
+	}
+
 	if (str.find_first_not_of("0123456789.f-+") != str.npos)
 		return INVALID;
 
-	if ((strlen == 1 && !std::isdigit(str[0])) || (strlen == 3 && str[0] == '\'' && str[2] == '\''))
-		return CHAR;
-
-	size_t signIndex = str.find_last_of('-+');
+	size_t signIndex = str.find_last_of("-+");
 	if (signIndex != str.npos && signIndex != 0)
 		return INVALID;
 
@@ -106,24 +116,73 @@ ScalarConverter::literalType ScalarConverter::parseType(std::string &str)
 	return DBL;
 }
 
-void ScalarConverter::printStrToChar(std::string_view str)
+void ScalarConverter::convertFromChar(std::string& str)
 {
-	char c = *static_cast<char *>((char *)str.data());
+	if (str[0] < 0 || str[0] > 127)
+		std::cout << "char: impossible\n";
+	else if (!std::isprint(str[0]))
+		std::cout << "char: Non displayable\n";
+	else
+		std::cout << "char: '" << str[0] << "'\n";
 
-	std::cout << "char: " << c << std::endl;
+	int integer = static_cast<int>(str[0]);
+	std::cout << "int: " << integer << "\n";
+
+	float flt = static_cast<float>(str[0]);
+	std::cout << "float: " << flt << ".0f\n";
+
+	int dbl = static_cast<double>(str[0]);
+	std::cout << "double: " << dbl << ".0\n";
 }
 
-void ScalarConverter::printStrToInt(std::string_view str)
+void ScalarConverter::convertFromInt(std::string& str)
 {
-	(void)str;
+	char chr;
+	int integer;
+	float flt;
+	double dbl;
+
+	try
+	{
+		integer = std::stoi(str);
+		std::cout << "char: impossible\n";
+		std::cout << "char: impossible\n";
+	}
+	catch (...)
+		{};
+
+	if (str[0] < 0 || str[0] > 127)
+		std::cout << "char: impossible\n";
+	else if (!std::isprint(str[0]))
+		std::cout << "char: Non displayable\n";
+	else
+		std::cout << "char: '" << str[0] << "'\n";
+
+	try {
+		int integer = static_cast<int>(str[0]);
+
+	}
+	std::cout << "int: " << integer << "\n";
+
+	float flt = static_cast<float>(str[0]);
+	std::cout << "float: " << flt << ".0f\n";
+
+	int dbl = static_cast<double>(str[0]);
+	std::cout << "double: " << dbl << ".0\n";
+
+
+	(void) str;
 }
 
-void ScalarConverter::printStrToFloat(std::string_view str)
+void ScalarConverter::convertFromFloat(std::string& str)
 {
-	(void)str;
+	(void) str;
+
 }
 
-void ScalarConverter::printStrToDouble(std::string_view str)
+void ScalarConverter::convertFromDouble(std::string& str)
 {
-	(void)str;
+	(void) str;
+
 }
+
