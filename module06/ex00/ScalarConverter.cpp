@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:39:37 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/11/13 15:59:52 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/11/13 16:34:57 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void ScalarConverter::convertFromInt(std::string& str)
 
 		if (integer > float(std::numeric_limits<char>::max())
 			|| integer < float(std::numeric_limits<char>::min()))
-			std::cout << "char: impossible\n";
+			std::cout << "char:	impossible\n";
 		else
 			printChar(chr);
 
@@ -166,10 +166,10 @@ void ScalarConverter::convertFromInt(std::string& str)
 	catch (...)
 	{
 		std::cout
-			<< "char: impossible\n"
-			<< "int: impossible\n"
-			<< "float: impossible\n"
-			<< "double: impossible\n"
+			<< "char:	impossible\n"
+			<< "int:	impossible\n"
+			<< "float:	impossible\n"
+			<< "double:	impossible\n"
 		<< std::flush;
 	};
 }
@@ -188,13 +188,13 @@ void ScalarConverter::convertFromFloat(std::string& str)
 
 		if (flt > float(std::numeric_limits<char>::max())
 			|| flt < float(std::numeric_limits<char>::min()))
-			std::cout << "char: impossible\n";
+			std::cout << "char:	impossible\n";
 		else
 			printChar(chr);
 			
 		if (flt > float(std::numeric_limits<int>::max())
 			|| flt < float(std::numeric_limits<int>::min()))
-			std::cout << "int: impossible\n";
+			std::cout << "int:	impossible\n";
 		else
 			printInt(integer);
 
@@ -208,13 +208,15 @@ void ScalarConverter::convertFromFloat(std::string& str)
 	catch (...)
 	{
 		std::cout
-			<< "char: impossible\n"
-			<< "int: impossible\n"
-			<< "float: impossible\n"
-			<< "double: impossible\n"
+			<< "char:	impossible\n"
+			<< "int:	impossible\n"
+			<< "float:	impossible\n"
+			<< "double:	impossible\n"
 		<< std::flush;
 	};
 }
+// TEST ./convert 2147483648.f
+//      (and slightly lower values, and same with negatives)
 
 void ScalarConverter::convertFromDouble(std::string& str)
 {
@@ -230,14 +232,14 @@ void ScalarConverter::convertFromDouble(std::string& str)
 
 		if (dbl > float(std::numeric_limits<char>::max())
 			|| dbl < float(std::numeric_limits<char>::min()))
-			std::cout << "char: impossible\n";
+			std::cout << "char:	impossible\n";
 		else
 			printChar(chr);
 			
 		float flt = static_cast<float>(dbl);
 		if (flt > float(std::numeric_limits<int>::max())
 			|| flt < float(std::numeric_limits<int>::min()))
-			std::cout << "int: impossible\n";
+			std::cout << "int:	impossible\n";
 		else
 			printInt(integer);
 
@@ -250,10 +252,10 @@ void ScalarConverter::convertFromDouble(std::string& str)
 	catch (...)
 	{
 		std::cout
-			<< "char: impossible\n"
-			<< "int: impossible\n"
-			<< "float: impossible\n"
-			<< "double: impossible\n"
+			<< "char:	impossible\n"
+			<< "int:	impossible\n"
+			<< "float:	impossible\n"
+			<< "double:	impossible\n"
 		<< std::flush;
 	};
 }
@@ -261,24 +263,24 @@ void ScalarConverter::convertFromDouble(std::string& str)
 void ScalarConverter::printChar(char& chr)
 {
 	if (chr < 0 || chr > 127)
-		std::cout << "char: impossible\n";
+		std::cout << "char:	impossible\n";
 	else if (!std::isprint(chr))
-		std::cout << "char: Non displayable\n";
+		std::cout << "char:	Non displayable\n";
 	else
-		std::cout << "char: '" << chr << "'\n";
+		std::cout << "char:	'" << chr << "'\n";
 }
 
 void ScalarConverter::printInt(int& integer)
 {
-	std::cout << "int: " << integer << "\n";
+	std::cout << "int:	" << integer << "\n";
 }
 
 void ScalarConverter::printFloat(float& flt)
 {
-	std::cout << "float: " << std::fixed << std::setprecision(1) << flt << "f\n";	
+	std::cout << "float:	" << std::fixed << std::setprecision(1) << flt << "f\n";	
 }
 
 void ScalarConverter::printDouble(double& dbl)
 {
-	std::cout << "double: " << std::fixed << std::setprecision(1) << dbl << "\n";
+	std::cout << "double:	" << std::fixed << std::setprecision(1) << dbl << "\n";
 }
