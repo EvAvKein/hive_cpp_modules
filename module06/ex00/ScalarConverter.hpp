@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:36:43 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/08/27 18:17:27 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/11/13 15:50:12 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #include <string_view>
 #include <iostream>
+#include <iomanip>
+#include <cmath>
 
 class ScalarConverter
 {
@@ -37,7 +39,8 @@ private:
 		DBL,
 	};
 
-	static literalType parseType(std::string& str);
+	static bool			printLiteral(std::string_view& str);
+	static literalType	parseType(std::string& str);
 
 	static void printChar(char& chr);
 	static void printInt(int& integer);
