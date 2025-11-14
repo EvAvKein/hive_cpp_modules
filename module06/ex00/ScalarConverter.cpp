@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:39:37 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/11/13 16:34:57 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/11/14 12:08:50 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,36 @@ void ScalarConverter::convert(std::string_view str)
 
 bool ScalarConverter::printLiteral(std::string_view& str)
 {
-	// TODO
-	if (str == "+inf" || str == "-inf" || str == "nan")
+	if (str == "+inf" || str == "+inff")
+	{
+		std::cout
+			<< "char:	impossible\n"
+			<< "int:	impossible\n"
+			<< "float:	+inff\n"
+			<< "double:	+inf\n"
+		<< std::flush;
 		return true;
-
-	if (str == "+inff" || str == "-inff" || str == "nanf")
+	}
+	else if (str == "-inf" || str == "-inff")
+	{
+		std::cout
+			<< "char:	impossible\n"
+			<< "int:	impossible\n"
+			<< "float:	-inff\n"
+			<< "double:	-inf\n"
+		<< std::flush;
 		return true;
+	}
+	else if (str == "nan" || str == "nanf")
+	{
+		std::cout
+			<< "char:	impossible\n"
+			<< "int:	impossible\n"
+			<< "float:	nanf\n"
+			<< "double:	nan\n"
+		<< std::flush;
+		return true;
+	}
 
 	return false;
 }
@@ -76,7 +100,7 @@ ScalarConverter::literalType ScalarConverter::parseType(std::string &str)
 	if ( (strlen == 1 && !std::isdigit(str[0]))
 		|| (strlen == 3 && str[0] == '\'' && str[2] == '\'') )
 	{
-		if (str[0] == '\'' && str[2] == '\'')
+		if (str[0] == '\'' && str[1] && str[2] == '\'')
 			str.erase(2, 1).erase(0, 1);
 		return CHAR;
 	}
@@ -147,8 +171,8 @@ void ScalarConverter::convertFromInt(std::string& str)
 		int integer = std::stoi(str);
 		char chr = static_cast<char>(integer);
 
-		if (integer > float(std::numeric_limits<char>::max())
-			|| integer < float(std::numeric_limits<char>::min()))
+		if (integer > std::numeric_limits<char>::max()
+			|| integer < std::numeric_limits<char>::min())
 			std::cout << "char:	impossible\n";
 		else
 			printChar(chr);
@@ -193,7 +217,8 @@ void ScalarConverter::convertFromFloat(std::string& str)
 			printChar(chr);
 			
 		if (flt > float(std::numeric_limits<int>::max())
-			|| flt < float(std::numeric_limits<int>::min()))
+			|| flt < float(std::numeric_limits<int>::min())
+			|| (flt > 0 != integer > 0) )
 			std::cout << "int:	impossible\n";
 		else
 			printInt(integer);
@@ -215,8 +240,6 @@ void ScalarConverter::convertFromFloat(std::string& str)
 		<< std::flush;
 	};
 }
-// TEST ./convert 2147483648.f
-//      (and slightly lower values, and same with negatives)
 
 void ScalarConverter::convertFromDouble(std::string& str)
 {
@@ -238,7 +261,8 @@ void ScalarConverter::convertFromDouble(std::string& str)
 			
 		float flt = static_cast<float>(dbl);
 		if (flt > float(std::numeric_limits<int>::max())
-			|| flt < float(std::numeric_limits<int>::min()))
+			|| flt < float(std::numeric_limits<int>::min())
+			|| (flt > 0 != integer > 0) )
 			std::cout << "int:	impossible\n";
 		else
 			printInt(integer);
