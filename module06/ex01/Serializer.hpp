@@ -20,9 +20,6 @@
 
 class Serializer
 {
-private:
-	static Data data;
-
 public:
 	Serializer(void) = delete;
 	Serializer(Serializer const &copied) = delete;
