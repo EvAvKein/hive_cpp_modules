@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
+#include <iostream>
 
 int	main(int argc, char** argv)
 {
@@ -19,5 +20,5 @@ int	main(int argc, char** argv)
 
 	Data data = {-2};
 	uintptr_t serialized = Serializer::serialize(&data);
-	printf("%i\n", Serializer::deserialize(serialized)->datum);
+	std::cout << Serializer::deserialize(serialized)->datum << std::endl;
 }
