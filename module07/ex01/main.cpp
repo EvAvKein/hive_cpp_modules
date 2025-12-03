@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 12:33:12 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/12/03 15:42:27 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/12/03 16:22:28 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,20 @@ int main(void) {
 	iter(nullArr, 999, print);
 
 	iter(numbers, 3, (void (*)(int&)) [](int& num){
-		std::cout << "I have the number " << num << std::endl;
+		std::cout << "array has the number " << num << std::endl;
 	});
 
-	iter<void (*)(std::string_view&)>((void (*[])(std::string_view& str)) {print}, 1,
-		(void (*)(void (*)(std::string_view&))) ( void (*&)(std::string_view&) ) {
-			// func("string");
+	using strFunc = void (*)(std::string_view&);
+
+	iter<strFunc>(
+		(strFunc[]) {
+			print,
+			(strFunc)[](std::string_view& str) {std::cout << "callback " << str << std::endl;}
+		},
+		2,
+		[](strFunc& function) {
+			std::string_view string = "function prints string";
+			function(string);
 		}
 	);
 }
