@@ -21,18 +21,63 @@ template <class T>
 class Array
 {
 	private:
-		T* vector;
+		T* vector = nullptr;
+		unsigned int vecSize = 0;
 
 	public:
-		Array(void);
-		Array(unsigned int n);
-		Array(Array const& copied);
-		Array &operator=(Array const& assigned);
-		~Array(void);
+		Array(void)
+		{
+			vector = new T[1];
+		};
 
-		Array &operator[](unsigned int index);
+		Array(unsigned int n)
+		{
+			if (n == 0)
+				throw std::length_error("Array initialization attempted with size 0");
+			vecSize = n;
+			vector = new T[n];
+		};
 
-		unsigned int size(void) const;
+		Array(Array const& copied)
+		{
+			vecSize = copied.size();
+			vector = new T[vecSize];
+			for (unsigned int i = 0; i < vecSize; i++)
+				vector[i] = copied[i];
+		};
+
+		Array &operator=(Array const& assigned)
+		{
+			delete vector;
+			vecSize = assigned.size();
+			vector = new T[vecSize];
+			for (unsigned int i = 0; i < vecSize; i++)
+				vector[i] = assigned[i];
+		};
+
+		~Array(void)
+		{
+			delete vector;
+		};
+
+		T &operator[](unsigned int index)
+		{
+			if (index >= vecSize)
+				throw std::out_of_range("Array indexed out of bounds");
+			return vector[index];
+		};
+
+		const T operator[](unsigned int index) const
+		{
+			if (index >= vecSize)
+				throw std::out_of_range("Array indexed out of bounds");
+			return vector[index];
+		};
+
+		unsigned int size(void) const
+		{
+			return vecSize;
+		};
 };
 
 #endif

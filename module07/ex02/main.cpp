@@ -10,36 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "iter.hpp"
-
-void print(std::string_view& string) {
-	std::cout << string << std::endl;
-}
+#include "Array.hpp"
 
 int main(void) {
-	void				(*nullFunc)(int&) = 0;
-	std::string_view	*nullArr = 0;
+	Array<int> intArr;
+	std::cout << "Int array of size " << intArr.size() << std::endl;
+	try {
+		intArr[1];
+	} catch (std::out_of_range& e) {
+		std::cout << "Exception with `intArr[1]`: " << e.what() << std::endl;
+	}
 
-	int		numbers[] = {1,2,3};
+	Array<char> charArr(5);
+	charArr[0] = 'H';
+	charArr[1] = 'e';
+	charArr[2] = 'l';
+	charArr[3] = 'l';
+	charArr[4] = 'o';
+	std::cout << "Char Array created, and assigned these characters (indexed):";
+	for (unsigned int i = 0; i < charArr.size(); i++)
+		std::cout << " \'" << charArr[i] << '\'';
+	std::cout << std::endl;
 
-	iter(numbers, 999, nullFunc);
-	iter(nullArr, 999, print);
+	Array<char> charArrCopy(charArr);
+	std::cout << "Char Array copy created and has these characters (indexed):";
+	for (unsigned int i = 0; i < charArrCopy.size(); i++)
+		std::cout << " \'" << charArrCopy[i] << '\'';
+	std::cout << std::endl;
 
-	iter(numbers, 3, (void (*)(int&)) [](int& num){
-		std::cout << "array has the number " << num << std::endl;
-	});
 
-	using strFunc = void (*)(std::string_view&);
-
-	iter<strFunc>(
-		(strFunc[]) {
-			print,
-			(strFunc)[](std::string_view& str) {std::cout << "callback " << str << std::endl;}
-		},
-		2,
-		[](strFunc& function) {
-			std::string_view string = "function prints string";
-			function(string);
-		}
-	);
 }
