@@ -14,7 +14,6 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
-# include <iostream>
 # include <stdexcept>
 
 template <class T>
@@ -25,9 +24,8 @@ class Array
 		unsigned int vecSize = 0;
 
 	public:
-		Array(void)
+		Array(void): vector(new T[1])
 		{
-			vector = new T[1];
 		};
 
 		Array(unsigned int n)
@@ -48,11 +46,16 @@ class Array
 
 		Array &operator=(Array const& assigned)
 		{
+			if (assigned == *this)
+				return ;
+
 			delete vector;
 			vecSize = assigned.size();
 			vector = new T[vecSize];
 			for (unsigned int i = 0; i < vecSize; i++)
 				vector[i] = assigned[i];
+
+			return *this;
 		};
 
 		~Array(void)
