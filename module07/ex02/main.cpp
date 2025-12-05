@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "Array.hpp"
+# include <iostream>
 
 int main(void) {
+	try {
 	Array<int> intArr;
 	std::cout << "Int array of size " << intArr.size() << std::endl;
 	try {
@@ -37,6 +39,7 @@ int main(void) {
 	for (unsigned int i = 0; i < charArrCopy.size(); i++)
 		std::cout << " \'" << charArrCopy[i] << '\'';
 	std::cout << std::endl;
-
-
+	} catch (...) {
+		std::cout << "Array allocation failure" << std::endl;
+	}
 }
