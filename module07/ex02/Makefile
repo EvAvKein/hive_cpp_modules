@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := functions
+NAME := array
 
 SRC := main.cpp
 HEADERS := Array.hpp

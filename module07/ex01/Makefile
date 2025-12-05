@@ -6,11 +6,11 @@
 #    By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 19:12:41 by ekeinan           #+#    #+#              #
-#    Updated: 2025/12/03 15:12:45 by ekeinan          ###   ########.fr        #
+#    Updated: 2025/12/05 15:06:15 by ekeinan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := functions
+NAME := iter
 
 SRC := main.cpp
 HEADERS := iter.hpp
