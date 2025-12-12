@@ -18,15 +18,15 @@ void print(std::string_view& string) {
 }
 
 int main(void) {
-	void				(*nullFunc)(int&) = 0;
+	void				(*nullFunc)(int const&) = 0;
 	std::string_view	*nullArr = 0;
 
-	int		numbers[] = {1,2,3};
+	const int		numbers[] = {1,2,3};
 
 	iter(numbers, 999, nullFunc);
 	iter(nullArr, 999, print);
 
-	iter(numbers, 3, (void (*)(int&)) [](int& num){
+	iter(numbers, 3, (void (*)(int const&)) [](int const& num){
 		std::cout << "array has the number " << num << std::endl;
 	});
 

@@ -17,7 +17,17 @@
 #include <cstddef>
 
 template <class T>
-void	iter(T* array, size_t length, void (*func)(T&))
+void	iter(T* array, const size_t length, void (*func)(T&))
+{
+	if (!array || !func)
+		return ;
+
+	for (size_t i = 0; i < length; i++)
+		func(array[i]);
+}
+
+template <class T>
+void	iter(T* array, const size_t length, void (*func)(T const&))
 {
 	if (!array || !func)
 		return ;
