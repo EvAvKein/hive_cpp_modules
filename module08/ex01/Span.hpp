@@ -32,9 +32,10 @@ public:
 	void addRange(typename T::iterator begin, typename T::iterator end)
 	{
 		size_t rangeSize = std::distance(begin, end);
-		if (vector.size() + rangeSize > capacity)
+		if (array.size() + rangeSize > capacity)
 			throw std::runtime_error("Span's remaining capacity cannot contain incoming Range");
-		vector.insert(vector.end(), begin, end);
+		array.insert(array.end(), begin, end);
+		std::sort(array.begin(), array.end());
 	}
 
 private:
