@@ -49,7 +49,7 @@ class Array
 			if (assigned == *this)
 				return ;
 
-			delete vector;
+			delete[] vector;
 			vecSize = assigned.size();
 			vector = new T[vecSize];
 			for (unsigned int i = 0; i < vecSize; i++)
@@ -60,7 +60,7 @@ class Array
 
 		~Array(void)
 		{
-			delete vector;
+			delete[] vector;
 		};
 
 		T &operator[](unsigned int index)
