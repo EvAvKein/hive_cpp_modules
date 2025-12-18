@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:36:43 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/11/13 15:50:12 by ekeinan          ###   ########.fr       */
+/*   Updated: 2025/12/18 11:33:20 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <vector>
+#include <limits>
 
 class Span
 {
@@ -28,6 +29,9 @@ public:
 
 	Span(unsigned int capacity);
 
+	void addNumber(int n);
+	unsigned int shortestSpan();
+	unsigned int longestSpan();
 	template <typename T>
 	void addRange(typename T::iterator begin, typename T::iterator end)
 	{
@@ -41,10 +45,6 @@ public:
 private:
 	unsigned int capacity;
 	std::vector<int> array;
-
-	void addNumber(unsigned int n);
-	unsigned int shortestSpan();
-	unsigned int longestSpan();
 };
 
 #endif

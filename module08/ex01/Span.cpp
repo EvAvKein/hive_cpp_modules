@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#include <limits>
-#include <stdexcept>
-#include <algorithm>
 
 Span::Span(void) : capacity(0)
 {
@@ -41,21 +38,23 @@ Span::Span(unsigned int capacity) : capacity(capacity)
 {
 }
 
-void Span::addNumber(unsigned int n)
+void Span::addNumber(int n)
 {
 	if (array.size() >= capacity)
 		throw std::runtime_error("Span is at capacity, cannot add number");
 	array.insert(array.end(), n);
 	std::sort(array.begin(), array.end());
 }
-
 unsigned int Span::shortestSpan(void)
 {
 	if (array.size() < 2)
 		throw std::logic_error("Span has insufficient size for shortestSpan check");
-	unsigned int shortest = std::numeric_limits<unsigned int>::max();
+	unsigned long long shortest = std::numeric_limits<unsigned int>::max();
 	for (unsigned int i = 1; i < array.size(); i++)
-		shortest = std::min(shortest, array[i] - array[i - 1]);
+	{
+		unsigned long long gap = static_cast<long long>(array[i]) - static_cast<long long>(array[i - 1]);
+		shortest = std::min(shortest, gap);
+	}
 	return shortest;
 }
 
