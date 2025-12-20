@@ -14,73 +14,25 @@
 #ifndef MUTANTSTACK_HPP
 # define MUTANTSTACK_HPP
 
-# include <stdexcept>
+# include <stack>
 
 template <class T>
-class MutantStack
+class MutantStack: public std::stack<T>
 {
-	private:
-		T* vector = nullptr;
-		unsigned int vecSize = 0;
-
 	public:
-		MutantStack(void): vector(new T[1])
-		{
-		};
+		MutantStack(void) = default;
+		MutantStack(MutantStack &copied) = default;
+		MutantStack &operator=(MutantStack &assigned) = default;
+		~MutantStack(void) = default;
 
-		MutantStack(unsigned int n)
-		{
-			if (n == 0)
-				throw std::length_error("MutantStack initialization attempted with size 0");
-			vecSize = n;
-			vector = new T[n];
-		};
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
-		MutantStack(MutantStack const& copied)
-		{
-			vecSize = copied.size();
-			vector = new T[vecSize];
-			for (unsigned int i = 0; i < vecSize; i++)
-				vector[i] = copied[i];
-		};
+		iterator begin() {return this->c.begin();}
+		iterator end() {return this->c.end();}
 
-		MutantStack &operator=(MutantStack const& assigned)
-		{
-			if (assigned == *this)
-				return ;
-
-			delete vector;
-			vecSize = assigned.size();
-			vector = new T[vecSize];
-			for (unsigned int i = 0; i < vecSize; i++)
-				vector[i] = assigned[i];
-
-			return *this;
-		};
-
-		~MutantStack(void)
-		{
-			delete vector;
-		};
-
-		T &operator[](unsigned int index)
-		{
-			if (index >= vecSize)
-				throw std::out_of_range("MutantStack indexed out of bounds");
-			return vector[index];
-		};
-
-		const T operator[](unsigned int index) const
-		{
-			if (index >= vecSize)
-				throw std::out_of_range("MutantStack indexed out of bounds");
-			return vector[index];
-		};
-
-		unsigned int size(void) const
-		{
-			return vecSize;
-		};
+		const_iterator begin() const {return this->c.begin();}
+		const_iterator end() const {return this->c.end();}
 };
 
 #endif
