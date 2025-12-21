@@ -20,9 +20,12 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	}
 
-	try {
+	try
+	{
 		BitcoinExchange bitEx(argv[1]);
-	} catch (std::exception &e) {
+	}
+	catch (std::exception &e)
+	{
 		std::cout << e.what() << std::endl;
 		return EXIT_FAILURE;
 	}

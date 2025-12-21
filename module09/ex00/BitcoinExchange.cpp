@@ -12,26 +12,61 @@
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(std::string const& priceQueryFilePath)
+BitcoinExchange::BitcoinExchange(std::string const &priceQueriesFilePath)
 {
-	if (std::regex_match(priceQueryFilePath, std::regex(".csv$")))
+	rateHistory = std::ifstream(BitcoinExchange::rateHistoryFilePath);
+	if (rateHistory.is_open())
 		throw std::invalid_argument(
-			"Program argument must be a file ending with \".csv\"");
-	rateHistory = new std::ifstream(BitcoinExchange::rateHistoryFilePath);
+			std::string("Program unable to open \"") + BitcoinExchange::rateHistoryFilePath + "\" Bitcoin rates file.");
 
+	priceQueries = std::ifstream(priceQueriesFilePath);
+	if (priceQueries.is_open())
+		throw std::invalid_argument(
+			std::string("Program unable to open \"") + priceQueriesFilePath + "\" Bitcoin rates file.");
+
+	loadRatesFromFile(rateHistory);
 }
 
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange &copied)
-// {
-// 	std::cout <<
-// 		"Corporate is hiring a bureaucrat who's exactly like " << name <<
-// 		" (including grade " << grade << ")" <<
-// 		". Corporate really likes " << name << " apparently."
-// 	<< std::endl;
-// }
+void BitcoinExchange::loadRatesFromFile(std::ifstream &ratesFile)
+{
+	std::string line;
+	static const std::string header = "date,exchange_rate";
+
+	std::getline(ratesFile, line);
+	if (line != header)
+		throw std::runtime_error(std::string("Bitcoin rates CSV file must begin with \"") + header + "\"");
+
+	while (getline(ratesFile, line))
+	{
+		static const std::regex ratePattern(datePattern + "," + valuePattern);
+		if (!std::regex_match(line, ratePattern))
+			;
+	}
+}
+
+void BitcoinExchange::printQueriesResults(std::ifstream &queries)
+{
+	std::string line;
+	static const std::string header = "date | value";
+
+	std::getline(queries, line);
+	if (line != "date | value")
+		throw std::runtime_error(std::string("Bitcoin rates CSV file must begin with \"") + header + "\"");
+
+	while (getline(queries, line))
+	{
+		static const std::regex ratePattern(datePattern + " | " + valuePattern);
+		if (!std::regex_match(line, ratePattern))
+			;
+	}
+}
 
 BitcoinExchange::~BitcoinExchange(void)
 {
+	if (rateHistory.is_open())
+		rateHistory.close();
+	if (priceQueries.is_open())
+		priceQueries.close();
 }
 
 // std::ostream	&operator<<(std::ostream &ostream, BitcoinExchange &output)

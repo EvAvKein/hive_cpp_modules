@@ -12,33 +12,40 @@
 
 #pragma once
 #ifndef BITCOIN_EXCHANGE_HPP
-# define BITCOIN_EXCHANGE_HPP
+#define BITCOIN_EXCHANGE_HPP
 
-# include <stdexcept>
-# include <iostream>
-# include <fstream>
-# include <map>
-# include <chrono>
-# include <regex>
+#include <stdexcept>
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <chrono>
+#include <regex>
+#include <iomanip>
 
-struct time {};
+struct time
+{
+};
 
 class BitcoinExchange
 {
-	private:
-		inline static const std::string		rateHistoryFilePath = "data.csv";
-		std::ifstream								*rateHistory = nullptr;
-		std::ifstream								*priceQuery = nullptr;
-		std::map<, int>	output;
+private:
+	inline static const std::string rateHistoryFilePath = "data.csv";
+	std::ifstream rateHistory;
+	std::ifstream priceQueries;
+	std::map<uint64_t, float> priceDatabase;
 
-	public:
-		BitcoinExchange(void) = delete;
-		BitcoinExchange(std::string const& priceQueryFilePath);
-		BitcoinExchange(BitcoinExchange const& copied);
-		BitcoinExchange &operator=(BitcoinExchange const& assigned) = delete;
-		~BitcoinExchange(void);
+	inline static const std::string datePattern = R"(\\d{4}-\\d{2}-\\d{2})";
+	inline static const std::string valuePattern = R"(\\d+(\\.\\d+)?)";
+
+	void loadRatesFromFile(std::ifstream &file);
+	void printQueriesResults(std::ifstream &file);
+
+public:
+	BitcoinExchange(void) = delete;
+	BitcoinExchange(BitcoinExchange const &copied) = delete;
+	BitcoinExchange &operator=(BitcoinExchange const &assigned) = delete;
+	~BitcoinExchange(void);
+
+	BitcoinExchange(std::string const &priceQueriesFilePath);
 };
-
-std::ostream	&operator<<(std::ostream &ostream, BitcoinExchange &output);
-
 #endif
