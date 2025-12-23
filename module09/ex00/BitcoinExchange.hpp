@@ -15,6 +15,7 @@
 #define BITCOIN_EXCHANGE_HPP
 
 #include <stdexcept>
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -32,13 +33,27 @@ private:
 	inline static const std::string rateHistoryFilePath = "data.csv";
 	std::ifstream rateHistory;
 	std::ifstream priceQueries;
-	std::map<uint64_t, float> priceDatabase;
+	std::map<unsigned long long, double> priceDatabase;
 
-	inline static const std::string datePattern = R"(\\d{4}-\\d{2}-\\d{2})";
-	inline static const std::string valuePattern = R"(\\d+(\\.\\d+)?)";
+	inline static const std::string datePattern = R"(\d{4}-\d{2}-\d{2})";
+	inline static const std::string valuePattern = R"(\d+(\.\d+)?)";
 
 	void loadRatesFromFile(std::ifstream &file);
 	void printQueriesResults(std::ifstream &file);
+
+	bool validDate(const std::string &dateStr);
+	unsigned long long parseDate(std::string dateStr, size_t &lineNum);
+	double parseRate(std::string rateStr, size_t &lineNum);
+
+	class InvalidFileException : public std::runtime_error
+	{
+	public:
+		InvalidFileException(void) = delete;
+		InvalidFileException(size_t lineNum, std::string errorText);
+		InvalidFileException(InvalidFileException const &copied) = delete;
+		InvalidFileException &operator=(InvalidFileException const &assigned) = delete;
+		~InvalidFileException(void) = default;
+	};
 
 public:
 	BitcoinExchange(void) = delete;
