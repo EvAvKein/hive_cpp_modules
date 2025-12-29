@@ -23,10 +23,6 @@
 #include <regex>
 #include <iomanip>
 
-struct time
-{
-};
-
 class BitcoinExchange
 {
 private:
@@ -63,4 +59,5 @@ public:
 
 	BitcoinExchange(std::string const &priceQueriesFilePath);
 };
+
 #endif
