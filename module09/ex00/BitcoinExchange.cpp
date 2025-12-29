@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-#include <chrono>
 
 BitcoinExchange::BitcoinExchange(std::string const &priceQueriesFilePath)
 {
