@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cout << "Program must receive exactly 1 argument" << std::endl;
+		std::cerr << "Program must receive exactly 1 argument" << std::endl;
 		return EXIT_FAILURE;
 	}
 
