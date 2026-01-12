@@ -18,7 +18,6 @@ HEADERS := PmergeMe.hpp
 
 CC := c++
 COMPILE_FLAGS := -Wall -Wextra -Werror -std=c++20
-VERBOSE_FLAGS := -D VERBOSE=1
 DEBUG_FLAGS := -g
 
 OBJ := $(SRC:%.cpp=%.o)
@@ -43,9 +42,6 @@ re: fclean all
 # EXTRAS #
 neat: $(NAME) clean
 	clear
-
-verbose: COMPILE_FLAGS += $(VERBOSE_FLAGS)
-verbose: re
 
 debug: COMPILE_FLAGS += $(DEBUG_FLAGS)
 debug: re
