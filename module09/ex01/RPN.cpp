@@ -72,16 +72,17 @@ static void division(RPN &rpn)
 	rpn.nums.pop();
 	int a = rpn.nums.top();
 	rpn.nums.pop();
-	int result = a / b;
-
-#if VERBOSE
-	std::cout << "[RPN]: " << a << " / " << b << " = " << result << std::endl;
-#endif
 
 	if (b == 0)
 		throw std::runtime_error("RPN reached division by zero - undefined behavior, aborting");
 	if (a == std::numeric_limits<int>::min() && b == -1)
 		throw std::runtime_error("RPN reached division of INT_MIN by -1 - undefined/unrepresentable behavior, aborting");
+
+	int result = a / b;
+
+#if VERBOSE
+	std::cout << "[RPN]: " << a << " / " << b << " = " << result << std::endl;
+#endif
 
 	rpn.nums.push(result);
 }
