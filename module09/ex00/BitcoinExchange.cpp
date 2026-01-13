@@ -6,7 +6,7 @@
 /*   By: ekeinan <ekeinan@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:39:37 by ekeinan           #+#    #+#             */
-/*   Updated: 2025/08/25 13:23:55 by ekeinan          ###   ########.fr       */
+/*   Updated: 2026/01/13 17:12:01 by ekeinan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,16 @@ void BitcoinExchange::printQueriesResults(std::ifstream &queries)
 		}
 
 		std::string dateStr = line.substr(0, line.find(' '));
-		unsigned long long date = parseDate(dateStr, lineNum);
-
 		std::string quantityStr = line.substr(line.find_last_of(' ') + 1);
-		double quantity = parseRate(quantityStr, lineNum);
+		unsigned long long date;
+		double quantity;
+		try {
+			date = parseDate(dateStr, lineNum);
+			quantity = parseRate(quantityStr, lineNum);
+		} catch (InvalidFileException &e) {
+			std::cout << e.what() << '\n';
+			continue;
+		}
 
 		if (quantity > 1000.0)
 		{
